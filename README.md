@@ -78,3 +78,18 @@ Never commit API service-role keys or private credentials.
 - Apply [the issue schema change](supabase/2026-11-24_daily_editions.sql) to the Supabase project before deploying the new app version. Content was seeded using the connected Supabase project; a separate SQL import is not required for the initial database.
 - The initial archive is a **one-time curated content release**. There is no automatic daily scraping, publishing, scheduled news ingestion or background AI summarization. Keep that distinction clear until a verified pipeline is implemented.
 - The site remains secured by Vercel Authentication (All Deployments), with preview deployments disabled to conserve free-tier build usage.
+
+
+## ChatGPT Project handoff (November 2026)
+
+Nexora can help organize article conversations inside the user's **own private ChatGPT Project** without paying for a new OpenAI API service.
+
+1. In ChatGPT, create a personal project named **Nexora Haber Analizleri**.
+2. Open that project's page in a browser and copy its URL, usually `https://chatgpt.com/g/g-p-.../project`. **Do not use a public project invitation link.**
+3. In Nexora: hamburger menu → **Ayarlar** → **ChatGPT haber projesi** → paste the URL and save it.
+4. Open a story and tap **Yazılı değerlendir** or **Sesli konuş**. Tap **Tüm haber bağlamını kopyala** and wait for the **Kopyalandı** confirmation.
+5. Tap **Nexora ChatGPT projemi aç**, create a new chat **inside that project**, paste the prepared context and send. Then chat or start Voice manually.
+
+The personal Project URL is validated against the `chatgpt.com/g/g-p-.../project` form and saved only in the current device's `localStorage`. It is not an OAuth connection; it does not grant access to the project. No keys or transcripts are saved by Nexora. Personal ChatGPT Projects have no public API that allows Nexora to directly create a Project chat or insert and send messages. A PWA also cannot reliably force the iPhone ChatGPT native app to open instead of Safari or activate Voice. We therefore retain a deliberate **copy → open project → paste and send** flow. If iOS opens the website, the user can open the ChatGPT app and enter their Project manually.
+
+Homepage layout changes: top-right Settings shortcut, introductory marketing text and redundant archive heading removed. Settings remain available from the hamburger menu. The day strip and calendar are more compact.
