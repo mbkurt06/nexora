@@ -73,7 +73,7 @@ export function ChatGPTAction({
       disabled={status === 'copying'}
       onClick={event => { event.preventDefault(); event.stopPropagation(); void openChatGPT(); }}>
       {status === 'copied' ? <Check size={18} aria-hidden="true"/> : <BotMessageSquare size={18} aria-hidden="true"/>}
-      <span>ChatGPT</span>
+      {placement === 'header' && <span>ChatGPT</span>}
     </button>
 
     {fallback && typeof document !== 'undefined' && createPortal(
