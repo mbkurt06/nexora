@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Bookmark, BookOpen, CalendarDays, Clock3, Search, Settings, X } from 'lucide-react';
+import { ArrowRight, Bookmark, BookOpen, CalendarDays, Clock3, Search, X } from 'lucide-react';
 import type { Article, Category } from '@/lib/types';
 import { CATEGORIES, CATEGORY_LABELS } from '@/lib/types';
 import { SiteMenu } from '@/components/SiteMenu';
@@ -102,8 +102,6 @@ export function NewsHome({ articles }: { articles: Article[] }) {
   const categoryName = section === 'all' ? 'Tüm başlıklar' : section === 'saved' ? 'Kaydedilenler' : CATEGORY_LABELS[section];
   const featured = filtered[0];
   const rest = filtered.slice(1);
-  const demoMode = articles.length > 0 && articles.every(a=>a.isDemo);
-  const currentIndex = dates.indexOf(issueDate);
   const rememberScroll = () => sessionStorage.setItem('nexora:scroll',String(window.scrollY));
 
   return <div className="app-shell">
@@ -112,48 +110,29 @@ export function NewsHome({ articles }: { articles: Article[] }) {
         <SiteMenu/>
         <Link href="/" className="brand" aria-label="Nexora ana sayfa">NEXORA<span className="brand-dot">.</span></Link>
         <span className="masthead-caption">Nexora Günlük</span>
-        <Link href="/settings" className="settings-button" aria-label="Ayarlar"><Settings size={19}/></Link>
         <button className="saved-button" onClick={()=>selectCategory('saved')} aria-label="Kaydedilen haberler">
           <Bookmark size={19}/><span>{saved.size}</span>
         </button>
       </div>
-      <div className="publication-nav"><span className="publication-current"><BookOpen size={16}/> NEXORA GÜNLÜK</span><span>Haber • Bilgi • Arşiv</span></div>
     </header>
 
     <main className="main-content">
-      <section className="daily-intro">
-        <div className="intro-overline"><span className="pulsedot"/> NEXORA GÜNLÜK / KİŞİSEL HABER DERGİSİ</div>
-        <h1>Bugünü anla.<br/><em>Dünü keşfet.</em></h1>
-        <p>Teknoloji, bilim, ekonomi, kitaplar ve dünyadaki önemli gelişmeler. Kaynaklı Türkçe özetler, her haber için ChatGPT değerlendirmesi.</p>
-        {demoMode && <div className="demo-banner">Henüz doğrulanmış haber eklenmedi. Bu görünüm yalnızca örnek içerik gösteriyor.</div>}
-      </section>
-
       <section className="edition-selector" aria-label="Tarihe göre yayın seç">
-        <div className="edition-heading">
-          <div><span className="eyebrow">GÜNLÜK ARŞİV</span><h2>{issueDate === 'all' ? 'Son 30 gün' : prettyDate(issueDate,true)}</h2></div>
-          <div className="edition-tools">
-            <button className="edition-today" onClick={()=>selectIssue('all')}>Son 30 gün</button>
-            <label className="edition-calendar"><CalendarDays size={17}/><span className="sr-only">Arşiv tarihi seç</span>
-              <input type="date" aria-label="Arşivden tarih seç" value={issueDate === 'all'?'':issueDate}
-                min={minDate} max={maxDate} onChange={event => event.target.value && selectIssue(event.target.value)}/>
-            </label>
-          </div>
+        <div className="edition-compact-toolbar">
+          <span className="edition-compact-current">{issueDate === 'all' ? 'Son 30 gün' : prettyDate(issueDate)}</span>
+          <label className="edition-calendar"><CalendarDays size={16}/><span className="sr-only">Yayın tarihi seç</span>
+            <input type="date" aria-label="Arşivden tarih seç" value={issueDate === 'all' ? '' : issueDate}
+              min={minDate} max={maxDate} onChange={event => event.target.value && selectIssue(event.target.value)}/>
+          </label>
         </div>
         <div className="issue-strip" role="group" aria-label="Haber bulunan günler">
           <button className={'issue-tab issue-all '+(issueDate === 'all'?'selected':'')} onClick={()=>selectIssue('all')} aria-pressed={issueDate === 'all'}>
-            <span>ARŞİV</span><strong>30 gün</strong><small>{articles.length} haber</small>
+            <strong>30 gün</strong>
           </button>
           {dates.map(date=><button key={date} className={'issue-tab '+(date === issueDate?'selected':'')}
             aria-pressed={date === issueDate} onClick={()=>selectIssue(date)}>
-            <span>{datePart(date,'month')}</span><strong>{datePart(date,'day')}</strong><small>{articles.filter(a=>issueOf(a)===date).length} haber</small>
+            <strong>{datePart(date,'day')}</strong><span>{datePart(date,'month')}</span>
           </button>)}
-        </div>
-        <div className="edition-explainer">
-          <span>{issueDate === 'all' ? 'Son bir ayın seçilmiş kaynaklı gelişmeleri' : 'Seçilen günün haberleri'}</span>
-          {issueDate !== 'all' && <div className="edition-arrows">
-            <button disabled={currentIndex <= 0} aria-label="Sonraki haberli gün" onClick={()=>currentIndex>0 && selectIssue(dates[currentIndex-1])}><ArrowRight size={16}/></button>
-            <button disabled={currentIndex < 0 || currentIndex >= dates.length-1} aria-label="Önceki haberli gün" onClick={()=>selectIssue(dates[currentIndex+1])}><ArrowLeft size={16}/></button>
-          </div>}
         </div>
       </section>
 
