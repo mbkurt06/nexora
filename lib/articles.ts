@@ -52,9 +52,10 @@ export async function getArticles(): Promise<Article[]> {
     .select('id,slug,title,summary,body,category,subcategory,published_at,issue_date,source_name,source_url,importance,read_time,cover_tone')
     .eq('status', 'published')
     .order('issue_date', { ascending: false })
+    .order('published_at', { ascending: false })
     .limit(100);
   if (error) { console.error('Could not load published news:', error.message); return []; }
-  return data?.length ? (data as ArticleRow[]).map(toArticle) : demoArticles;
+  return (data as ArticleRow[]).map(toArticle);
 }
 
 export async function getArticle(slug: string): Promise<Article | null> {
@@ -64,5 +65,5 @@ export async function getArticle(slug: string): Promise<Article | null> {
     .select('id,slug,title,summary,body,category,subcategory,published_at,issue_date,source_name,source_url,importance,read_time,cover_tone')
     .eq('status', 'published').eq('slug', slug).maybeSingle();
   if (error) { console.error('Could not load article:', error.message); return null; }
-  return data ? toArticle(data as ArticleRow) : (demoArticles.find(a => a.slug === slug) ?? null);
+  return data ? toArticle(data as ArticleRow) : null;
 }
