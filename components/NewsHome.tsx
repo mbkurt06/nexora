@@ -153,8 +153,10 @@ export function NewsHome({ articles }: { articles: Article[] }) {
         </div>
         {featured ? <>
           <div className={'featured-card tone-'+featured.coverTone}>
+            <div className="featured-visual" aria-hidden="true">
+              <div className="feature-decor">{CATEGORIES.find(c=>c.id===featured.category)?.icon}</div>
+            </div>
             <Link href={'/story/'+featured.slug} onClick={rememberScroll} className="featured-link">
-              <div className="feature-decor" aria-hidden="true">{CATEGORIES.find(c=>c.id===featured.category)?.icon}</div>
               <span className="featured-kicker">{CATEGORY_LABELS[featured.category]} / {featured.subcategory}</span>
               <h3>{featured.title}</h3><p>{featured.summary}</p>
               <div className="featured-meta"><span><Clock3 size={15}/>{featured.readTime} dk</span><span>{articleDate(featured)}</span><ArrowRight size={21}/></div>
