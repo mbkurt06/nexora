@@ -126,7 +126,7 @@ export function ArticleView({ article }: {article: Article}) {
           <p>Önce haber bağlamını kopyala. Sonra ChatGPT'yi açıp yeni bir sohbete yapıştır.</p>
           <label htmlFor="prepared-context" className="context-label">Hazır haber bağlamı</label>
           <textarea id="prepared-context" ref={textRef} className="context-preview" readOnly value={prepared} onFocus={e=>e.currentTarget.select()} />
-          <button className="copy-button" onClick={async () => setCopied(await copyText(prepared, textRef.current))}>{copied ? <Check size={19}/> : <Copy size={19}/>} {copied ? 'Kopyalandı — şimdi ChatGPT'yi aç' : 'Haber metnini kopyala'}</button>
+          <button className="copy-button" onClick={async () => setCopied(await copyText(prepared, textRef.current))}>{copied ? <Check size={19}/> : <Copy size={19}/>} {copied ? "Kopyalandı — şimdi ChatGPT'yi aç" : 'Haber metnini kopyala'}</button>
           <a className="open-chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT'yi aç <ExternalLink size={17}/></a>
           {mode === 'voice' ? <p className="dialog-tip"><strong>Sesli konuşma:</strong> Metni sohbete yapıştırıp gönder, ChatGPT'de sesli modu başlat. iPhone'da arka planda konuşmaya devam etmek için ChatGPT'nin Voice → Background Conversations ayarını açman gerekebilir. Ardından Nexora'ya dönebilirsin.</p> : <p className="dialog-tip">ChatGPT sayfası açıldığında kopyaladığın metni yeni sohbete yapıştır. Sonra o haberi istediğin kadar tartışabilirsin.</p>}
         </div>
