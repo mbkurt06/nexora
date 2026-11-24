@@ -1,0 +1,496 @@
+[
+  {
+    "issue_date": "2026-11-24",
+    "published_at": "2026-11-24T12:00:00Z",
+    "category": "science",
+    "subcategory": "Uzay",
+    "slug": "nasa-dragonfly-titan-kameralari",
+    "title": "NASA'nın Titan'a gidecek Dragonfly aracı kameralarına kavuşuyor",
+    "summary": "Satürn'ün büyük uydusu Titan'ı inceleyecek Dragonfly'ın yedi kamerasının entegrasyonunda önemli bir aşama tamamlandı.",
+    "body": [
+      "NASA'nın açıkladığına göre Dragonfly'ın bilimsel kameraları geliştirme ve test aşamalarından geçerek araç üzerindeki yerlerine yerleştirildi. Görev, Satürn'ün en büyük uydusu Titan'ın yüzeyi ve kimyasal ortamı hakkında veri toplayacak.",
+      "Bu gelişme aracın Titan'a ulaştığı veya bilimsel ölçümlere başladığı anlamına gelmiyor. NASA duyurusu, uzun soluklu görevin Dünya'daki hazırlık sürecine dair bir mühendislik kilometre taşı."
+    ],
+    "source_name": "NASA",
+    "source_url": "https://science.nasa.gov/missions/dragonfly/nasas-titan-bound-dragonfly-rotorcraft-gets-its-eyes/",
+    "importance": "high",
+    "cover_tone": "indigo",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-23",
+    "published_at": "2026-11-23T12:00:00Z",
+    "category": "environment",
+    "subcategory": "İklim",
+    "slug": "cop31-antalya-sonuclari",
+    "title": "COP31 Antalya'da tamamlandı: ilerleme var, uzlaşmazlıklar sürüyor",
+    "summary": "BM İklim Değişikliği Sekretaryası, Antalya'daki COP31 görüşmelerinde bazı alanlarda ilerleme sağlandığını ancak temel konularda anlaşmazlıkların kaldığını açıkladı.",
+    "body": [
+      "23 Kasım'da yayımlanan BM değerlendirmesi, adil geçiş, iklim eylemi ve elektrifikasyon gibi alanlarda görüşmelerin sonuçlarını özetledi. Bazı başlıklarda ilerleme kaydedilirken başkanlık öncülüğündeki kapsamlı karar üzerinde uzlaşı sağlanamadı.",
+      "Sonuçların önemi, açıklanan taahhütlerin gerçek uygulamaya ne ölçüde yansıyacağında. Bu nedenle bir müzakere sonucuyla bağlayıcı uygulama takvimini ayrı değerlendirmek gerekir."
+    ],
+    "source_name": "UNFCCC",
+    "source_url": "https://unfccc.int/news/cop31-delivers-important-progress-across-negotiations-and-action-agenda-advancing-implementation-but",
+    "importance": "high",
+    "cover_tone": "green",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-23",
+    "published_at": "2026-11-23T12:00:00Z",
+    "category": "technology",
+    "subcategory": "Siber güvenlik",
+    "slug": "openai-cisco-shirudo-ebpf",
+    "title": "OpenAI ve Cisco, Linux için açık kaynak Shirudo korumasını duyurdu",
+    "summary": "Shirudo, sistemler yeniden başlatılmadan, yamalar hazırlanırken eBPF tabanlı geçici savunmalar uygulamayı hedefliyor.",
+    "body": [
+      "OpenAI ve Cisco'nun tanıttığı Shirudo, Linux üzerinde belirli şüpheli işlemleri izleyip sınırlandırabilen eBPF korumaları sunuyor. Açıklamada bir güvenlik açığına karşı hazırlanan korumanın kontrollü testte saldırıyı engellediği belirtiliyor.",
+      "Yaklaşım kalıcı yama yönetiminin yerini almıyor. Güvenlik ekiplerinin asıl yamayı test edip dağıtana kadar geçici ve denetlenebilir bir savunma katmanı oluşturmasına yardımcı olmayı amaçlıyor."
+    ],
+    "source_name": "OpenAI",
+    "source_url": "https://openai.com/index/introducing-shirudo/",
+    "importance": "high",
+    "cover_tone": "red",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-21",
+    "published_at": "2026-11-21T12:00:00Z",
+    "category": "science",
+    "subcategory": "Astronomi",
+    "slug": "bepicolombo-merkur-yorungesi",
+    "title": "BepiColombo Merkür yörüngesine giriş aşamasına ulaştı",
+    "summary": "ESA/JAXA'nın BepiColombo görevi, uzun yolculuğun ardından 21 Kasım'da Merkür çevresindeki yörüngeye giriş manevrasını gerçekleştirdi.",
+    "body": [
+      "Avrupa Uzay Ajansı'nın görev güncellemeleri, BepiColombo'nun Merkür'e yaklaşma ve yörüngeye oturma sürecinde motor manevralarının kullanıldığını aktarıyor. Araç iki bilimsel yörünge aracını taşıyor.",
+      "Bu aşamadan sonraki ayrılma ve ölçüm hazırlıkları, gezegenin manyetik alanı, yapısı ve yüzeyini incelemeye yönelik görev planının sonraki parçaları."
+    ],
+    "source_name": "ESA",
+    "source_url": "https://www.esa.int/articles/about-us/directorates/science/bepicolombo/latest-updates-bepicolombo-s-arrival-at-mercury",
+    "importance": "high",
+    "cover_tone": "indigo",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-20",
+    "published_at": "2026-11-20T12:00:00Z",
+    "category": "economy",
+    "subcategory": "Şirketler",
+    "slug": "anthropic-halka-arz-kapanisi",
+    "title": "Anthropic halka arzının tamamlandığını açıkladı",
+    "summary": "Şirket, Nasdaq'ta ANT koduyla işlem görmeye başlayan hisselerine ilişkin halka arz kapanışını ve eş zamanlı özel yerleştirme işlemlerini duyurdu.",
+    "body": [
+      "Anthropic'in 20 Kasım açıklamasına göre A sınıfı hisselerin halka arz işlemi tamamlandı; hisseler 19 Kasım'da Nasdaq piyasasında işlem görmeye başladı. Şirket, halka arz fiyatını hisse başına 83 dolar olarak duyurdu.",
+      "Bu gelişme yapay zekâ sektöründeki finansman ölçeğini gösteriyor. Açıklanan brüt gelir tutarları kârlılık veya yatırım getirisi anlamına gelmez; şirketin yayımladığı izahnameyle birlikte değerlendirilmelidir."
+    ],
+    "source_name": "Anthropic",
+    "source_url": "https://www.anthropic.com/news/ipo-close?format=full",
+    "importance": "high",
+    "cover_tone": "gold",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-20",
+    "published_at": "2026-11-20T12:00:00Z",
+    "category": "education",
+    "subcategory": "Eğitim politikası",
+    "slug": "unesco-okul-oncesi-egitim-yatirimi",
+    "title": "UNESCO: Okul öncesi eğitime yatırım uzun vadede yüksek getiri sağlayabilir",
+    "summary": "UNESCO'nun yeni raporu, erken çocukluk eğitimine yapılan her bir dolarlık yatırımın 2035'e kadar yaklaşık dört dolarlık toplumsal faydaya dönüşebileceğine işaret ediyor.",
+    "body": [
+      "UNESCO'nun yayımladığı değerlendirme, okul öncesi eğitime erişim ve kamu finansmanındaki eksiklikleri inceliyor. Özellikle düşük ve orta gelirli ülkelerde bu alanın eğitim bütçesinden aldığı payın sınırlı kaldığı vurgulanıyor.",
+      "Buradaki getiri bir banka faizi değil; eğitim, toplumsal refah ve ekonomi üzerindeki tahmini uzun dönem etkileri kapsayan bir araştırma göstergesi. Ülkelere göre gerçekleşen sonuçlar farklılaşabilir."
+    ],
+    "source_name": "UNESCO",
+    "source_url": "https://www.unesco.org/en/articles/unesco-report-calls-greater-investment-pre-primary-education-every-dollar-invested-yielding-nearly",
+    "importance": "normal",
+    "cover_tone": "sage",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-18",
+    "published_at": "2026-11-18T12:00:00Z",
+    "category": "technology",
+    "subcategory": "Yapay zekâ",
+    "slug": "google-gemini-4-neon",
+    "title": "Google, Gemini 4 Neon modelini geliştiricilere sundu",
+    "summary": "Gemini 4 Neon; kodlama, analitik iş akışları ve çok adımlı görevlerde kullanılmak üzere duyuruldu.",
+    "body": [
+      "Google, 18 Kasım'da Gemini 4 Neon'un Google AI Studio ve Gemini API dahil çeşitli ortamlarda kullanıma sunulduğunu açıkladı. Şirket, modelin uzun bağlam ve çok aşamalı iş süreçlerindeki kullanımını öne çıkarıyor.",
+      "Tanıtımda verilen performans ölçümleri farklı testlerden geliyor. Pratikte model seçerken gerçek proje görevleri, gecikme, fiyat ve hata oranları birlikte değerlendirilmelidir."
+    ],
+    "source_name": "Google",
+    "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+    "importance": "high",
+    "cover_tone": "blue",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-18",
+    "published_at": "2026-11-18T12:00:00Z",
+    "category": "economy",
+    "subcategory": "Enflasyon",
+    "slug": "euro-bolgesi-enflasyon-ekim-2026",
+    "title": "Euro Bölgesi'nde Ekim yıllık enflasyonu %4,0 oldu",
+    "summary": "Eurostat'ın 18 Kasım nihai verileri, Euro Bölgesi'ndeki yıllık tüketici fiyat artışının ekimde %4,0 seviyesinde gerçekleştiğini gösterdi.",
+    "body": [
+      "Eurostat, Ekim 2026 yıllık enflasyonunu Euro Bölgesi için yüzde 4,0 olarak açıkladı. Veri, fiyat seviyesinin geçen yılın aynı ayına göre değişimini ölçüyor.",
+      "Tek bir oran her ülkedeki fiyat artışını aynı biçimde yansıtmaz. Enerji, gıda ve hizmetlerin katkıları ile Almanya'nın ulusal enflasyon göstergeleri ayrıca incelenmeli."
+    ],
+    "source_name": "Eurostat",
+    "source_url": "https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-18112026-ap",
+    "importance": "high",
+    "cover_tone": "gold",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-18",
+    "published_at": "2026-11-18T12:00:00Z",
+    "category": "books",
+    "subcategory": "Edebiyat ödülleri",
+    "slug": "abd-ulusal-kitap-odulleri-2026",
+    "title": "2026 ABD Ulusal Kitap Ödülleri sahiplerini buldu",
+    "summary": "National Book Foundation, 77. Ulusal Kitap Ödülleri töreninde kurgu, kurgu dışı, şiir, çeviri ve gençlik edebiyatı kategorilerinin kazananlarını açıkladı.",
+    "body": [
+      "18 Kasım'daki törende Amerikan edebiyatının önemli ödüllerinden National Book Awards beş kategoride sahiplerini buldu. Vakfın resmî sayfasında kazanan kitaplar ve yazarlar listeleniyor.",
+      "Ödül listesi yalnızca çok satanlar sıralaması değil; yeni yazarları ve farklı türleri keşfetmek için bir başlangıç noktası. Kitap seçerken özet ve eleştirileri de incelemek yararlı olabilir."
+    ],
+    "source_name": "National Book Foundation",
+    "source_url": "https://www.nationalbook.org/awards2026/winners/",
+    "importance": "normal",
+    "cover_tone": "peach",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-17",
+    "published_at": "2026-11-17T12:00:00Z",
+    "category": "world",
+    "subcategory": "AB kararları",
+    "slug": "ab-297-milyon-dijital-teknoloji-cagrisi",
+    "title": "Avrupa Komisyonu dijital teknoloji için 297 milyon avroluk çağrı açtı",
+    "summary": "AB, yapay zekâ, fotonik, veri altyapısı ve sanal dünyalar gibi alanlarda yeni Horizon Europe başvuru çağrıları başlattı.",
+    "body": [
+      "Avrupa Komisyonu, 17 Kasım'da 12 konudan oluşan iki başvuru çağrısının toplam 297 milyon avroya ulaştığını açıkladı. Programda yapay zekâ güvenliği, robotik, enerji verimliliği ve yeni dijital altyapı temaları bulunuyor.",
+      "Bu rakam şirketlere doğrudan ödenmiş bir miktar değil; araştırma ve yenilik projelerinin başvurabileceği bir çağrı bütçesi. Komisyon başvuru süresinin 18 Mart 2027'ye kadar açık olduğunu belirtiyor."
+    ],
+    "source_name": "Avrupa Komisyonu",
+    "source_url": "https://digital-strategy.ec.europa.eu/en/news/commission-launches-over-eu290-million-boost-eu-tech-sovereignty-and-beyond",
+    "importance": "high",
+    "cover_tone": "sage",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-16",
+    "published_at": "2026-11-16T12:00:00Z",
+    "category": "culture",
+    "subcategory": "Kültürel miras",
+    "slug": "unesco-sualti-mirasi-sozlesmesi-25-yil",
+    "title": "UNESCO sualtı kültürel miras sözleşmesinin 25. yılını kutladı",
+    "summary": "UNESCO, batıklar ve tarihî sualtı kalıntılarının korunmasına yönelik 2001 Sözleşmesi için uluslararası bir toplantı düzenledi.",
+    "body": [
+      "16 Kasım'da UNESCO merkezinde gerçekleştirilen etkinlik, sualtı arkeolojisinin korunması ve uluslararası iş birliğini ele aldı. Sözleşmenin temel amacı kültürel ve tarihî nitelikli sualtı izlerini korumak.",
+      "Kültürel miras yalnızca karadaki yapılarla sınırlı değil. Deniz ve göl tabanındaki arkeolojik alanların korunması bilimsel araştırma, eğitim ve gelecek kuşaklara aktarım açısından önemli."
+    ],
+    "source_name": "UNESCO",
+    "source_url": "https://www.unesco.org/en/articles/unesco-celebrates-25-years-underwater-cultural-heritage-convention",
+    "importance": "normal",
+    "cover_tone": "violet",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-13",
+    "published_at": "2026-11-13T12:00:00Z",
+    "category": "economy",
+    "subcategory": "Büyüme",
+    "slug": "eurobolgesi-ucuncu-ceyrek-buyume",
+    "title": "Euro Bölgesi ekonomisi üçüncü çeyrekte %0,4 büyüdü",
+    "summary": "Eurostat'ın öncü değerlendirmesine göre 2026'nın üçüncü çeyreğinde Euro Bölgesi GSYH'si önceki çeyreğe kıyasla %0,4 arttı.",
+    "body": [
+      "Eurostat 13 Kasım'da Euro Bölgesi için çeyreklik büyümeyi yüzde 0,4; AB geneli için yüzde 0,5 olarak bildirdi. Aynı dönemde istihdamın büyük ölçüde yatay seyrettiği ifade edildi.",
+      "Bu oranlar mevsimsellikten arındırılmış çeyreklik değişimleri gösteriyor. Yıllık büyüme oranlarıyla veya tek bir ülkenin büyümesiyle karıştırılmamalı."
+    ],
+    "source_name": "Eurostat",
+    "source_url": "https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-13112026-ap",
+    "importance": "high",
+    "cover_tone": "gold",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-12",
+    "published_at": "2026-11-12T12:00:00Z",
+    "category": "technology",
+    "subcategory": "Arama ve yapay zekâ",
+    "slug": "google-search-gemini-4-hydrogen",
+    "title": "Google Arama'ya Gemini 4 Hydrogen güncellemesi geldi",
+    "summary": "Google, karmaşık soruları anlama ve farklı kaynakları birlikte işleme hedefiyle arama deneyimine yeni modelini entegre ettiğini duyurdu.",
+    "body": [
+      "12 Kasım açıklamasında Google, Gemini 4 Hydrogen'un arama sonuçlarında daha ayrıntılı yanıtlar ve yapılandırılmış içerik sunacağını belirtti. Görsel bilgiler, bağlantılar ve karşılaştırmalı öğeler öne çıkan özellikler arasında.",
+      "Yeni modelin daha iyi yanıt üretmesi her sonucu doğrulanmış hâle getirmez. Kritik bilgi ararken bağlantılı kaynakları kontrol etmek hâlâ önemli."
+    ],
+    "source_name": "Google",
+    "source_url": "https://blog.google/products-and-platforms/products/search/gemini-4-hydrogen-search-upgrade/",
+    "importance": "high",
+    "cover_tone": "blue",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-11",
+    "published_at": "2026-11-11T12:00:00Z",
+    "category": "world",
+    "subcategory": "Dijital düzenlemeler",
+    "slug": "ab-digital-fairness-act-onerisi",
+    "title": "AB dijital tüketici hakları için Digital Fairness Act teklifini sundu",
+    "summary": "Avrupa Komisyonu, çevrim içi tüketicilerin korunmasına yönelik kuralları güncellemeyi amaçlayan yeni bir yasal teklif açıkladı.",
+    "body": [
+      "11 Kasım'da sunulan Digital Fairness Act teklifi, dijital ortamdaki tüketici korumasını güçlendirmeyi hedefliyor. Çevrim içi abonelikler, adil ticari uygulamalar ve kullanıcı hakları önemli tartışma alanlarından.",
+      "Bu aşama yürürlüğe girmiş kanun anlamına gelmiyor: Komisyon teklifi, AB yasama sürecinde değerlendirilmesi gereken bir metin. Nihai kurallar görüşmeler sonucunda değişebilir."
+    ],
+    "source_name": "Avrupa Komisyonu",
+    "source_url": "https://audiovisual.ec.europa.eu/en/stories/M-010072",
+    "importance": "high",
+    "cover_tone": "sage",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-10",
+    "published_at": "2026-11-10T12:00:00Z",
+    "category": "health",
+    "subcategory": "Bilim iletişimi",
+    "slug": "dso-bilim-saglik-guven-hareketi",
+    "title": "DSÖ bilim ve sağlığa güveni güçlendirmek için küresel girişim başlattı",
+    "summary": "Dünya Sağlık Örgütü, bilimsel bilgiye duyulan güveni artırmak amacıyla Together for Science and Health hareketini duyurdu.",
+    "body": [
+      "DSÖ'nün 10 Kasım duyurusunda bilim ve sağlık alanındaki güven sorunları ile toplumların doğru bilgiye erişimi vurgulandı. Girişim, kurumlar ve topluluklar arasında bilim temelli iletişimi desteklemeyi amaçlıyor.",
+      "Bu bir ilaç veya aşı onayı değil; halk sağlığında bilginin anlaşılması, yanlış bilginin etkisinin azaltılması ve güvenilir iletişimin güçlendirilmesine yönelik bir çalışma."
+    ],
+    "source_name": "WHO",
+    "source_url": "https://www.who.int/newcaledonia/news/detail-global/10-11-2026-who-launches-together-for-science-and-health-movement-to-strengthen-trust-worldwide",
+    "importance": "normal",
+    "cover_tone": "green",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-09",
+    "published_at": "2026-11-09T12:00:00Z",
+    "category": "books",
+    "subcategory": "Edebiyat ödülleri",
+    "slug": "booker-2026-m-john-harrison",
+    "title": "2026 Booker Ödülü M. John Harrison'ın The End of Everything romanına verildi",
+    "summary": "Booker jürisi, 2026'nın en dikkat çekici İngilizce romanları arasından M. John Harrison'ın eserini seçti.",
+    "body": [
+      "9 Kasım'da açıklanan Booker Prize 2026 ödülünün sahibi M. John Harrison ve The End of Everything oldu. Booker, Birleşik Krallık ve İrlanda'da yayımlanma koşullarını karşılayan İngilizce romanları değerlendiriyor.",
+      "Ödül hem yazarın uluslararası görünürlüğünü artırıyor hem de farklı okur kitlelerinin eseri keşfetmesini sağlıyor. Romanın konusu ve anlatı biçimi için ödül kurumunun kitap sayfasına başvurulabilir."
+    ],
+    "source_name": "The Booker Prizes",
+    "source_url": "https://thebookerprizes.com/the-booker-library/books/the-end-of-everything",
+    "importance": "high",
+    "cover_tone": "peach",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-09",
+    "published_at": "2026-11-09T12:00:00Z",
+    "category": "social",
+    "subcategory": "Instagram",
+    "slug": "meta-genclerin-yasini-yapay-zekayla-tahmin",
+    "title": "Instagram genç hesap korumalarını dünya çapında genişletiyor",
+    "summary": "Meta, yaşını yetişkin olarak bildiren bazı gençleri de genç hesap korumalarına almak için yapay zekâ destekli yaş tahminini genişlettiğini duyurdu.",
+    "body": [
+      "Meta, 9 Kasım açıklamasında Instagram üzerinde yaş tahminini küresel ölçekte genişlettiğini belirtti. Genç hesap sisteminin kimlerin iletişim kurabileceği, görülen içerikler ve kullanım süreleri üzerinde korumalar sunduğunu açıkladı.",
+      "Teknoloji kişilerin yaşını kesin olarak bilmek yerine tahmin etmeye dayanıyor. Bu nedenle yanlış sınıflandırma ihtimali, itiraz yolları ve gizlilik konuları ayrıca önem taşıyor."
+    ],
+    "source_name": "Meta",
+    "source_url": "https://about.fb.com/news/2026/11/expanding-teen-account-protections-to-teens-around-the-world/",
+    "importance": "high",
+    "cover_tone": "blue",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-06",
+    "published_at": "2026-11-06T12:00:00Z",
+    "category": "economy",
+    "subcategory": "Perakende",
+    "slug": "eurobolgesi-eylul-perakende-dusus",
+    "title": "Euro Bölgesi'nde perakende satış hacmi eylülde %0,7 geriledi",
+    "summary": "Eurostat, mevsimsellikten arındırılmış perakende ticaret hacminin eylülde önceki aya göre Euro Bölgesi'nde %0,7 düştüğünü açıkladı.",
+    "body": [
+      "6 Kasım'da yayımlanan veri, Eylül 2026'da perakende satış hacminin Euro Bölgesi genelinde aylık yüzde 0,7, AB genelinde yüzde 0,6 azaldığını gösterdi.",
+      "Hacim göstergesi, fiyat değişimlerinden arındırılmış ticaret hareketine odaklanır. Tek ayın verisi uzun dönemli tüketim eğilimi için yeterli olmadığından önceki aylarla karşılaştırılmalıdır."
+    ],
+    "source_name": "Eurostat",
+    "source_url": "https://ec.europa.eu/eurostat/en/web/products-euro-indicators/w/4-06112026-ap",
+    "importance": "normal",
+    "cover_tone": "gold",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-05",
+    "published_at": "2026-11-05T12:00:00Z",
+    "category": "technology",
+    "subcategory": "Siber güvenlik",
+    "slug": "openai-gpt6-cyber",
+    "title": "OpenAI siber savunmaya odaklanan GPT-6 Cyber modelini tanıttı",
+    "summary": "OpenAI'nin yeni siber güvenlik modeli, yetkili güvenlik araştırmaları ve savunma odaklı iş akışlarında kullanılmak üzere duyuruldu.",
+    "body": [
+      "5 Kasım'daki duyuruya göre GPT-6 Cyber, yazılım zafiyetlerinin anlaşılması ve düzeltmelerin geliştirilmesi gibi savunma görevleri için tasarlandı. Açıklama, modelin kullanımına belirli güvenlik ve yetkilendirme sınırları getirildiğini belirtiyor.",
+      "Bir modelin güvenlik testlerinde güçlü performans göstermesi gerçek ortamda her zafiyeti bulacağı anlamına gelmez. Yetkili kullanım, insan kontrolü ve sonuçların bağımsız doğrulanması gerekli."
+    ],
+    "source_name": "OpenAI",
+    "source_url": "https://openai.com/index/introducing-gpt-6-cyber/",
+    "importance": "high",
+    "cover_tone": "red",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-04",
+    "published_at": "2026-11-04T12:00:00Z",
+    "category": "social",
+    "subcategory": "X / Twitter",
+    "slug": "x-lite-yeni-web-altyapi",
+    "title": "X, lite.x.com deneyiminin yeni teknik altyapısını anlattı",
+    "summary": "X mühendislik ekibi, daha hafif bir web deneyimi için React, Vite ve Fastify dahil araçlarla geliştirilen yeni mimariyi paylaştı.",
+    "body": [
+      "4 Kasım tarihli teknik yazıda X, lite.x.com üzerinde denenen yeniden tasarlanmış web uygulamasının arka planını açıkladı. Geliştirme ekibi kullanılan teknoloji yığınına ve uygulamanın çalışma biçimine dair ayrıntılar verdi.",
+      "Bu duyuru tüm x.com kullanıcılarının aynı anda yeni arayüze geçtiği anlamına gelmiyor. Teknik deney ve ürünün genel kullanıma sunulma kapsamı ayrı değerlendirilmelidir."
+    ],
+    "source_name": "X Engineering",
+    "source_url": "https://blog.x.com/en/engineering/rebuilding-the-global-town-square-from-scratch",
+    "importance": "normal",
+    "cover_tone": "slate",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-04",
+    "published_at": "2026-11-04T12:00:00Z",
+    "category": "health",
+    "subcategory": "Klinik araştırma",
+    "slug": "dso-ebola-iki-asi-adayi",
+    "title": "DSÖ Ebola araştırmasına iki yeni aşı adayının eklenmesini önerdi",
+    "summary": "DSÖ uzman grupları, Kongo Demokratik Cumhuriyeti'ndeki Tumaini klinik çalışmasına iki ek Ebola aşı adayının alınmasını tavsiye etti.",
+    "body": [
+      "4 Kasım tarihli DSÖ açıklaması, Ebola'ya karşı aşı araştırmalarının genişletilmesine yönelik uzman değerlendirmesini aktarıyor. Önerilen adaylar sürmekte olan klinik deneme kapsamında ele alınacak.",
+      "Bir aşının klinik denemeye eklenmesi, etkinliğinin ve güvenliğinin kanıtlandığı ya da ruhsat aldığı anlamına gelmez. Sonuçları belirlemek için klinik veriler ve düzenleyici değerlendirmeler gerekir."
+    ],
+    "source_name": "WHO",
+    "source_url": "https://www.who.int/brunei/news/detail-global/04-11-2026-two-new-candidate-vaccines-to-join-ebola-trial-as-treatment-research-advances",
+    "importance": "high",
+    "cover_tone": "green",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-03",
+    "published_at": "2026-11-03T12:00:00Z",
+    "category": "science",
+    "subcategory": "Parçacık fiziği",
+    "slug": "cern-lhcb-cok-nadir-bozunma",
+    "title": "CERN LHCb deneyinde son derece nadir bir parçacık bozunmasına ilişkin kanıt",
+    "summary": "CERN, LHCb deneyinin yaklaşık on milyarda bir gerçekleşen parçacık bozunma sürecine dair yeni kanıt elde ettiğini duyurdu.",
+    "body": [
+      "3 Kasım açıklamasında CERN, LHCb deneyinin çok nadir görülen bir parçacık bozunma kanalını inceleyerek bilimsel kanıt sunduğunu bildirdi. Böyle ölçümler parçacık fiziğinin kuramsal öngörülerini sınamaya yardımcı oluyor.",
+      "Bilimsel dilde 'kanıt' ifadesi her zaman keşfin kesin olarak ilan edildiği anlamına gelmez. Ölçümün istatistiksel gücü ve başka deneylerle doğrulanması önemlidir."
+    ],
+    "source_name": "CERN",
+    "source_url": "https://home.cern/lhcb-finds-evidence-of-one-in-ten-billion-particle-decay/",
+    "importance": "high",
+    "cover_tone": "violet",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-11-02",
+    "published_at": "2026-11-02T12:00:00Z",
+    "category": "economy",
+    "subcategory": "Şirket bilançoları",
+    "slug": "apple-2026-dorduncu-ceyrek-sonuclari",
+    "title": "Apple 2026 mali yılı dördüncü çeyrek sonuçlarını açıkladı",
+    "summary": "Apple, 2 Kasım'da gelir, kârlılık ve şirket faaliyetlerine ilişkin mali yıl sonu finansal sonuçlarını yayımladı.",
+    "body": [
+      "Apple'ın yatırımcı duyurusu şirketin 2026 mali yılı dördüncü çeyrek sonuçlarını ve mali performansını içeriyor. Şirketin açıklamaları yeni ürünlerin satış ortamını ve servis gelirlerini takip etmek açısından önemli.",
+      "Şirketlerin mali çeyrekleri takvim çeyrekleriyle aynı tarihlere denk gelmeyebilir. Finansal değerlendirmede karşılaştırmanın hangi dönemle yapıldığına ve raporun ayrıntılarına bakılmalı."
+    ],
+    "source_name": "Apple",
+    "source_url": "https://www.apple.com/newsroom/2026/11/apple-reports-fourth-quarter-results/",
+    "importance": "normal",
+    "cover_tone": "gold",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-10-29",
+    "published_at": "2026-10-29T12:00:00Z",
+    "category": "economy",
+    "subcategory": "Para politikası",
+    "slug": "ecb-29-ekim-2026-faiz-karari",
+    "title": "Avrupa Merkez Bankası 29 Ekim'de temel faizleri değiştirmedi",
+    "summary": "ECB mevduat faizini %2,50, ana refinansman faizini %2,65 ve marjinal borç verme faizini %2,90 düzeyinde tuttu.",
+    "body": [
+      "Avrupa Merkez Bankası Yönetim Konseyi 29 Ekim 2026 toplantısında üç temel politika faizini sabit bıraktı. Açıklamada enerji fiyatları, enflasyon görünümü ve büyüme riskleri değerlendirildi.",
+      "Karar, bireysel kredi ve mevduat faizlerinin aynı gün aynı oranda kalacağı anlamına gelmez. Banka faizlerinin gelişiminde piyasa beklentileri, kredi koşulları ve bankaların kendi fiyatlamaları da rol oynar."
+    ],
+    "source_name": "Avrupa Merkez Bankası",
+    "source_url": "https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html",
+    "importance": "high",
+    "cover_tone": "gold",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-10-28",
+    "published_at": "2026-10-28T12:00:00Z",
+    "category": "technology",
+    "subcategory": "Yeni ürünler",
+    "slug": "apple-proled-dokunmatik-macbook",
+    "title": "Apple dokunmatik PROLED XDR ekranlı yeni MacBook Pro'yu duyurdu",
+    "summary": "Apple, 14 ve 16 inç MacBook Pro serisinde yüksek kontrastlı PROLED XDR ekranı ve dokunmatik etkileşim özelliğini tanıttı.",
+    "body": [
+      "28 Ekim'deki ürün duyurusuna göre yeni MacBook Pro, PROLED XDR ekranıyla daha yüksek parlaklık ve daha geniş renk kapsamını hedefliyor. Apple, bu nesilde dokunmatik kullanımın Mac deneyimine eklendiğini belirtiyor.",
+      "Üreticinin verdiği parlaklık ve kontrast değerleri belirli test koşullarına dayanır. Bir bilgisayarı değerlendirirken gerçek pil ömrü, performans, tam model ve fiyat bilgileri ayrıca incelenmeli."
+    ],
+    "source_name": "Apple",
+    "source_url": "https://www.apple.com/tr/newsroom/2026/10/apple-unveils-groundbreaking-macbook-pro-with-proled-xdr-display/",
+    "importance": "high",
+    "cover_tone": "peach",
+    "read_time": 2,
+    "status": "published"
+  },
+  {
+    "issue_date": "2026-10-27",
+    "published_at": "2026-10-27T12:00:00Z",
+    "category": "technology",
+    "subcategory": "Yeni ürünler",
+    "slug": "apple-m6-macbook-pro-14",
+    "title": "Apple M6 işlemcili 14 inç MacBook Pro'yu tanıttı",
+    "summary": "Yeni 14 inç MacBook Pro, Apple M6 yongası ve macOS 27 ile birlikte duyuruldu.",
+    "body": [
+      "Apple 27 Ekim'de 14 inç MacBook Pro modelinin M6 yonga ailesiyle yenilendiğini açıkladı. Ürün duyurusu işlemci ve grafik performansı ile yeni macOS özelliklerine odaklanıyor.",
+      "Yeni yonga nesli her iş yükünde aynı oranda hızlanma sağlamayabilir. Geliştirme, video işleme ve günlük kullanım performansını değerlendirirken bağımsız testlere de bakmak gerekir."
+    ],
+    "source_name": "Apple",
+    "source_url": "https://www.apple.com/newsroom/2026/10/apple-introduces-the-new-14-inch-macbook-pro-with-m6/",
+    "importance": "high",
+    "cover_tone": "peach",
+    "read_time": 2,
+    "status": "published"
+  }
+]
