@@ -67,10 +67,6 @@ export function ChatGPTAction({
     setStatus(copied ? 'copied' : 'idle');
     if (!copied) {
       setFallback({ problem: 'copy', context, url });
-    } else if (!destination) {
-      // Some iOS in-app browsers return null for an external-app handoff.
-      // The user may already be in ChatGPT; keep a manual link available on return.
-      setFallback({ problem: 'popup', context, url });
     }
   };
 
