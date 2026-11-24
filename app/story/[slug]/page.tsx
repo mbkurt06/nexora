@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { getArticle } from '@/lib/articles';
 import { ArticleView } from '@/components/ArticleView';
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 type Props = { params: Promise<{slug: string}> };
 
