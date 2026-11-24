@@ -1,9 +1,13 @@
 name: Build Nexora
 
+# Avoid duplicate build quota usage for each feature-branch commit.
 on:
   push:
-    branches: [main, 'feat/**']
+    branches: [main]
   pull_request:
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -12,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
       - run: npm install --no-audit --no-fund
       - run: npm run typecheck
       - run: npm run build
