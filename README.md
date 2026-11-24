@@ -66,3 +66,15 @@ Never commit API service-role keys or private credentials.
 - News reading doesn't call paid AI APIs. ChatGPT discussions happen in the user's own ChatGPT application.
 - There is currently **no scheduled background ingestion or polling**. Future ingestion should run only once or a few times per day with a strict article limit, source deduplication, and usage budgets.
 - Vercel Authentication blocks unauthorized visitors before the app executes, but this does not guarantee zero usage from other traffic or deployments; monitor actual quota in Vercel's Usage dashboard.
+
+## Nexora Günlük — daily editions
+
+- Main app section: **Nexora Günlük**, opened from the global hamburger menu.
+- Includes ten topics: Technology, Science, Economy, World, Books, Health, Digital Life, Culture, Education, and Environment.
+- Date strip and native calendar select a **specific publication day**; only stories assigned to that day appear. Dates without curated stories explicitly show an empty state. **Son 30 gün** shows the collection as a whole.
+- Archive selection is stored in the browser's session and URL query parameter (`?date=YYYY-MM-DD`). Opening an article preserves list/scroll state on the same device.
+- The initial archive contains **26 editorial summaries across 20 distinct dates, October 27–November 24, 2026**, with a primary-source URL for each. See [the reviewed content data](content/curated-2026-10-27-to-11-24.json).
+- Each summary is written anew in Turkish; full copyrighted source articles are never imported or reproduced. Announcements and proposals are explicitly distinguished from enacted rules or completed results.
+- Apply [the issue schema change](supabase/2026-11-24_daily_editions.sql) to the Supabase project before deploying the new app version. Content was seeded using the connected Supabase project; a separate SQL import is not required for the initial database.
+- The initial archive is a **one-time curated content release**. There is no automatic daily scraping, publishing, scheduled news ingestion or background AI summarization. Keep that distinction clear until a verified pipeline is implemented.
+- The site remains secured by Vercel Authentication (All Deployments), with preview deployments disabled to conserve free-tier build usage.
