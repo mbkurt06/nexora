@@ -54,37 +54,24 @@ export function ChatGPTAction({
     }
 
     setStatus('copying');
-    // Start the clipboard write during the user's tap, before opening a new tab.
-    // Keep a blank tab reserved so iPhone/Safari doesn't block a post-await popup.
+    // Copy while the user gesture is active, and open the real destination immediately.
+    // iOS leaves an about:blank tab behind if we first open a placeholder and redirect later.
     const copyPromise = copyContext(context);
     let destination: Window | null = null;
     try {
-      destination = window.open('', '_blank');
-      if (destination) {
-        destination.document.title = 'ChatGPT projesi açılıyor…';
-        destination.document.body.textContent = 'Nexora haber metni kopyalanıyor…';
-        destination.opener = null;
-      }
+      destination = window.open(url, '_blank');
+      if (destination) destination.opener = null;
     } catch { destination = null; }
 
     const copied = await copyPromise;
+    setStatus(copied ? 'copied' : 'idle');
     if (!copied) {
-      try { destination?.close(); } catch { /* The new tab may already be gone. */ }
-      setStatus('idle');
       setFallback({ problem: 'copy', context, url });
-      return;
+    } else if (!destination) {
+      // Some iOS in-app browsers return null for an external-app handoff.
+      // The user may already be in ChatGPT; keep a manual link available on return.
+      setFallback({ problem: 'popup', context, url });
     }
-
-    setStatus('copied');
-    if (destination) {
-      try {
-        destination.location.replace(url);
-        return;
-      } catch { /* Navigation may be restricted by this browser. */ }
-      try { destination.close(); } catch { /* Nothing to close. */ }
-    }
-    // A blocked popup never silently sends the user to a different site.
-    setFallback({ problem: 'popup', context, url });
   };
 
   return <>
