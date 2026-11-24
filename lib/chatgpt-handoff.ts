@@ -13,9 +13,6 @@ export function formatArticleForChatGPT(article: Article): string {
     'Nexora günlük sayı tarihi: ' + (article.issueDate || 'Belirtilmemiş'),
     article.isDemo ? 'DİKKAT: Bu yazı güncel haber değil, örnek içeriktir.' : '',
     'Haber özeti:\n' + article.summary,
-    'Nexora haber metni:\n' + article.body.join('\n\n'),
-    'Bu haberin önemini Türkçe ve tarafsız değerlendir. Olay tarihini yayın tarihinden ayır, ' +
-      'kanıtlanmış olgularla iddiaları ayır, gerekirse kaynakların güncelliğini yeniden doğrula. ' +
-      'Bu sohbet içinde haberle ilgili sorularımı yanıtla. Dilersem sesli sohbete geçeceğim.'
+    'Nexora haber metni:\n' + article.body.join('\n\n')
   ].filter(Boolean).join('\n\n');
 }
