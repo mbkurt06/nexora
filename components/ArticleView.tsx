@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, Bookmark, Check, Clock3, Copy, ExternalLink, Headphones, MessageCircle, Share2, X } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Bookmark, Check, Clock3, Copy, ExternalLink, Headphones, MessageCircle, Settings, Share2, X } from 'lucide-react';
 import type { Article } from '@/lib/types';
 import { CATEGORY_LABELS } from '@/lib/types';
 
@@ -87,7 +87,7 @@ export function ArticleView({ article }: {article: Article}) {
       <header className="article-header">
         <Link href="/" className="back-link"><ArrowLeft size={19}/> <span>Gazeteye dön</span></Link>
         <Link href="/" className="brand small-brand">NEXORA<span className="brand-dot">.</span></Link>
-        <button className="icon-action" onClick={toggleSaved} aria-label={saved ? 'Kaydı kaldır' : 'Haberi kaydet'}><Bookmark size={20} fill={saved ? 'currentColor' : 'none'}/></button>
+        <div className="article-header-actions"><Link className="icon-action" href="/settings" aria-label="Ayarlar ve gece modu"><Settings size={20}/></Link><button className="icon-action" onClick={toggleSaved} aria-label={saved ? 'Kaydı kaldır' : 'Haberi kaydet'}><Bookmark size={20} fill={saved ? 'currentColor' : 'none'}/></button></div>
       </header>
 
       <main className="story-layout">
