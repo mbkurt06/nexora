@@ -56,3 +56,13 @@ Next.js 15 App Router + TypeScript + CSS + optional Supabase. Deployment: Vercel
 - Live deployment and iPhone PWA / ChatGPT voice-handoff test
 
 Never commit API service-role keys or private credentials.
+
+## Private access and low-usage mode
+
+- Nexora production, preview and historical deployment URLs are protected with **Vercel Authentication → All Deployments**. Only accounts permitted in the Nexora Vercel team can access the app. This protection is configured in Vercel, not in application source code; don't turn it off when redeploying.
+- On iPhone, open the Nexora address and sign in with your Vercel account. A standalone Home Screen PWA may require a fresh Vercel sign-in because iOS can isolate web-app cookies.
+- Appearance: open **Ayarlar** (gear icon) to choose **Açık**, **Gece modu**, or **Otomatik**. The choice is kept in the current device's local storage.
+- The home and story pages use a **1-hour revalidation interval** to avoid unnecessary Supabase reads and server work. Story updates may therefore take up to an hour to become visible without a redeploy/revalidation.
+- News reading doesn't call paid AI APIs. ChatGPT discussions happen in the user's own ChatGPT application.
+- There is currently **no scheduled background ingestion or polling**. Future ingestion should run only once or a few times per day with a strict article limit, source deduplication, and usage budgets.
+- Vercel Authentication blocks unauthorized visitors before the app executes, but this does not guarantee zero usage from other traffic or deployments; monitor actual quota in Vercel's Usage dashboard.
