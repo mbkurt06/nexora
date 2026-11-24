@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Check, LockKeyhole, Moon, Monitor, Sun } from 'lucide-react';
+import { SiteMenu } from '@/components/SiteMenu';
 import { getThemePreference, saveThemePreference, type ThemePreference } from '@/lib/theme';
 
 const options: { value: ThemePreference; label: string; description: string; Icon: typeof Sun }[] = [
@@ -24,7 +25,7 @@ export function SettingsView() {
   return (
     <div className="app-shell">
       <header className="article-header">
-        <Link className="back-link" href="/"><ArrowLeft size={19}/> <span>Gazeteye dön</span></Link>
+        <SiteMenu/><Link className="back-link" href="/"><ArrowLeft size={19}/> <span>Gazeteye dön</span></Link>
         <Link href="/" className="brand small-brand">NEXORA<span className="brand-dot">.</span></Link>
         <span className="header-placeholder" aria-hidden="true"/>
       </header>
