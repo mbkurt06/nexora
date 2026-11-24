@@ -1,7 +1,12 @@
 /** ChatGPT consumer Projects do not expose a public API for creating personal project chats.
  * We only store an existing project URL, never credentials or access tokens.
  */
-export const CHATGPT_PROJECT_KEY = 'nexora:chatgpt-project';
+// Versioned key prevents an older device-specific Project URL from overriding the new shared News project.
+export const CHATGPT_PROJECT_KEY = 'nexora:chatgpt-project:v2';
+
+export function getDefaultChatGPTProjectUrl(): string | null {
+  return normalizeChatGPTProjectUrl(process.env.NEXT_PUBLIC_CHATGPT_PROJECT_URL || '');
+}
 
 export function normalizeChatGPTProjectUrl(input: string): string | null {
   try {
@@ -15,8 +20,10 @@ export function normalizeChatGPTProjectUrl(input: string): string | null {
 }
 
 export function getChatGPTProjectUrl(): string | null {
-  try { return normalizeChatGPTProjectUrl(localStorage.getItem(CHATGPT_PROJECT_KEY) || ''); }
-  catch { return null; }
+  try {
+    return normalizeChatGPTProjectUrl(localStorage.getItem(CHATGPT_PROJECT_KEY) || '')
+      || getDefaultChatGPTProjectUrl();
+  } catch { return getDefaultChatGPTProjectUrl(); }
 }
 
 export function saveChatGPTProjectUrl(input: string): string | null {

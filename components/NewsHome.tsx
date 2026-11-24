@@ -6,6 +6,7 @@ import { ArrowRight, Bookmark, BookOpen, CalendarDays, Clock3, Search, X } from 
 import type { Article, Category } from '@/lib/types';
 import { CATEGORIES, CATEGORY_LABELS } from '@/lib/types';
 import { SiteMenu } from '@/components/SiteMenu';
+import { ChatGPTAction } from '@/components/ChatGPTAction';
 
 type Section = Category | 'all' | 'saved';
 const issueOf = (article: Article) => article.issueDate || article.publishedAt?.slice(0,10) || null;
@@ -83,12 +84,6 @@ export function NewsHome({ articles }: { articles: Article[] }) {
     sessionStorage.setItem('nexora:scroll','0');
   };
 
-  const toggleSaved = (id:string) => {
-    const next = new Set(saved);
-    if(next.has(id)) next.delete(id); else next.add(id);
-    setSaved(next);
-    try { localStorage.setItem('nexora:saved',JSON.stringify([...next])); } catch {}
-  };
 
   const candidates = articles.filter(a =>
     (issueDate === 'all' || issueOf(a) === issueDate)
@@ -164,12 +159,12 @@ export function NewsHome({ articles }: { articles: Article[] }) {
               <h3>{featured.title}</h3><p>{featured.summary}</p>
               <div className="featured-meta"><span><Clock3 size={15}/>{featured.readTime} dk</span><span>{articleDate(featured)}</span><ArrowRight size={21}/></div>
             </Link>
-            <button className="feature-save" aria-label={saved.has(featured.id)?'Kaydı kaldır':'Haberi kaydet'} onClick={()=>toggleSaved(featured.id)}><Bookmark size={18} fill={saved.has(featured.id)?'currentColor':'none'}/></button>
+            <ChatGPTAction article={featured} placement="featured" onStart={rememberScroll}/>
           </div>
           <div className="article-grid">{rest.map(article=><article key={article.id} className={'news-card '+(read.has(article.id)?'has-read':'')}>
             <div className={'card-art tone-'+article.coverTone} aria-hidden="true"><span>{CATEGORIES.find(c=>c.id===article.category)?.icon}</span></div>
             <div className="card-content">
-              <div className="card-top"><span>{CATEGORY_LABELS[article.category]} / {article.subcategory}</span><button aria-label={saved.has(article.id)?'Kaydı kaldır':'Haberi kaydet'} onClick={()=>toggleSaved(article.id)}><Bookmark size={18} fill={saved.has(article.id)?'currentColor':'none'}/></button></div>
+              <div className="card-top"><span>{CATEGORY_LABELS[article.category]} / {article.subcategory}</span><ChatGPTAction article={article} placement="card" onStart={rememberScroll}/></div>
               <Link className="card-title" href={'/story/'+article.slug} onClick={rememberScroll}><h3>{article.title}</h3></Link>
               <p>{article.summary}</p>
               <div className="card-footer"><span><Clock3 size={14}/>{article.readTime} dk</span><span>{read.has(article.id)?'✓ Okundu':articleDate(article)}</span><Link href={'/story/'+article.slug} onClick={rememberScroll} aria-label={'Haberi oku: '+article.title}><ArrowRight size={19}/></Link></div>

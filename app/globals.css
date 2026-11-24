@@ -439,3 +439,36 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 :root[data-theme="dark"] .project-save-button{background:#4b6fb6;border-color:#4b6fb6}
 :root[data-theme="dark"] .project-input-error{color:#ff9eae!important}
 :root[data-theme="dark"] .edition-compact-current{color:var(--ink)}
+
+
+/* One-tap ChatGPT handoff. The full article is copied before the News project opens. */
+.chatgpt-action{display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;font:inherit;font-size:12px;font-weight:800;line-height:1.15;border-radius:10px;transition:background .15s,border-color .15s}
+.chatgpt-action:disabled{opacity:.55;cursor:wait}
+.chatgpt-action svg{flex-shrink:0}
+.chatgpt-action--featured{position:absolute;top:21px;right:21px;z-index:7;background:#ffffff29;color:#fff;border:1px solid #ffffff7d;padding:9px 12px;backdrop-filter:blur(10px)}
+.chatgpt-action--featured:hover{background:#ffffff42}
+.card-top .chatgpt-action--card{background:var(--paper);border:1px solid var(--line);color:var(--ink);padding:7px 9px;flex-shrink:0;font-size:11px;font-weight:800}
+.card-top .chatgpt-action--card:hover{background:#e7eefb;border-color:#87a0cb}
+.card-top>span{min-width:0;line-height:1.6}
+.chatgpt-action--header{background:#223959;color:#fff;border:1px solid #223959;padding:9px 12px;min-height:38px}
+.chatgpt-action--header:hover{background:#355884}
+.chatgpt-fallback-dialog .context-preview{height:155px}
+.chatgpt-fallback-dialog .dialog-title-row h2{font-size:21px;margin:0}
+.chatgpt-fallback-dialog .copy-button{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin:12px 0 7px}
+.chatgpt-fallback-dialog .open-chatgpt{display:flex;justify-content:center;gap:8px;align-items:center;margin-top:10px}
+:root[data-theme="dark"] .card-top .chatgpt-action--card{color:#cbdcff;border-color:#50688d;background:#273b5b}
+:root[data-theme="dark"] .card-top .chatgpt-action--card:hover{background:#385988}
+:root[data-theme="dark"] .chatgpt-action--header{background:#3e6098;color:#fff;border-color:#6486bf}
+@media(max-width:600px){
+  .article-header .back-link span{display:none}
+  .article-header{padding:16px 18px}
+  .article-header .chatgpt-action--header{font-size:11px;padding:9px 10px}
+  .chatgpt-action--featured{top:13px;right:13px;padding:8px 10px;font-size:11px}
+  .card-top .chatgpt-action--card{font-size:10px;padding:6px}
+  .card-top .chatgpt-action--card svg{width:15px;height:15px}
+}
+@media(max-width:360px){
+  .chatgpt-action--header span{display:none}
+  .chatgpt-action--header{min-width:38px}
+  .card-top .chatgpt-action--card span{font-size:10px}
+}

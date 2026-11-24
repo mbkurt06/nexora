@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, Check, Copy, ExternalLink, Link2, LockKeyhole, MessageCircle, Moon, Monitor, Sun, X } from 'lucide-react';
 import { SiteMenu } from '@/components/SiteMenu';
 import { getThemePreference, saveThemePreference, type ThemePreference } from '@/lib/theme';
-import { CHATGPT_PROJECT_INSTRUCTIONS, clearChatGPTProjectUrl, getChatGPTProjectUrl, saveChatGPTProjectUrl } from '@/lib/chatgpt-project';
+import { CHATGPT_PROJECT_INSTRUCTIONS, clearChatGPTProjectUrl, getChatGPTProjectUrl, getDefaultChatGPTProjectUrl, saveChatGPTProjectUrl } from '@/lib/chatgpt-project';
 
 const options: { value: ThemePreference; label: string; description: string; Icon: typeof Sun }[] = [
   { value: 'light', label: 'Açık', description: 'Her zaman açık renk görünüm', Icon: Sun },
@@ -40,8 +40,9 @@ export function SettingsView() {
 
   const removeProject = () => {
     clearChatGPTProjectUrl();
-    setProjectInput('');
-    setProjectUrl(null);
+    const defaultUrl = getDefaultChatGPTProjectUrl();
+    setProjectInput(defaultUrl || '');
+    setProjectUrl(defaultUrl);
     setProjectError('');
   };
 
@@ -93,8 +94,8 @@ export function SettingsView() {
             </div>
           </div>
           <div className="project-setup-steps">
-            <p><strong>1.</strong> ChatGPT'de <strong>Nexora Haber Analizleri</strong> adında özel bir proje oluştur.</p>
-            <p><strong>2.</strong> Proje açıkken tarayıcı adresini kopyala ve aşağıdaki alana yapıştır.</p>
+            <p><strong>News projen</strong> Nexora için varsayılan olarak ayarlı. Bilgisayarda ve telefonda aynı proje açılır.</p>
+            <p>İstersen aşağıdaki adresten bu cihaz için farklı bir ChatGPT projesi seçebilirsin.</p>
           </div>
           <label className="project-url-label" htmlFor="chatgpt-project-url">Proje bağlantısı</label>
           <div className="project-url-field">
@@ -108,12 +109,12 @@ export function SettingsView() {
           {projectError && <p id="project-error" className="project-input-error" role="alert">{projectError}</p>}
           <div className="project-setup-actions">
             <button type="button" className="project-save-button" onClick={saveProject}><Check size={17}/> Projeyi kaydet</button>
-            {projectUrl && <button type="button" className="project-remove-button" onClick={removeProject}><X size={16}/> Bağlantıyı kaldır</button>}
+            {projectUrl && <button type="button" className="project-remove-button" onClick={removeProject}><X size={16}/> Varsayılana dön</button>}
           </div>
-          {projectUrl && <div className="project-linked-note"><Check size={18}/> Proje bağlantısı bu cihazda kayıtlı.
+          {projectUrl && <div className="project-linked-note"><Check size={18}/> News proje bağlantısı hazır.
             <a href={projectUrl} target="_blank" rel="noopener noreferrer">Projeyi aç <ExternalLink size={14}/></a>
           </div>}
-          <p className="settings-hint">Bu bağlantı yalnızca cihazında saklanır. ChatGPT'deki özel projenin sohbetlerine erişim yetkisi vermez veya otomatik sohbet oluşturmaz.</p>
+          <p className="settings-hint">Varsayılan proje bağlantısı tüm cihazlarda ortaktır; bu ekranda yaptığın değişiklik ise yalnızca bu cihazda saklanır. Bağlantı kişisel ChatGPT projesinde otomatik sohbet oluşturma yetkisi vermez.</p>
           <div className="project-instructions">
             <h3>Proje talimatı (isteğe bağlı)</h3>
             <p>ChatGPT'de Proje ayarları → Talimatlar bölümüne bu metni ekleyebilirsin.</p>

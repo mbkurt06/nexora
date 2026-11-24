@@ -80,16 +80,13 @@ Never commit API service-role keys or private credentials.
 - The site remains secured by Vercel Authentication (All Deployments), with preview deployments disabled to conserve free-tier build usage.
 
 
-## ChatGPT Project handoff (November 2026)
+## One-tap ChatGPT News Project handoff (November 2026)
 
-Nexora can help organize article conversations inside the user's **own private ChatGPT Project** without paying for a new OpenAI API service.
-
-1. In ChatGPT, create a personal project named **Nexora Haber Analizleri**.
-2. Open that project's page in a browser and copy its URL, usually `https://chatgpt.com/g/g-p-.../project`. **Do not use a public project invitation link.**
-3. In Nexora: hamburger menu → **Ayarlar** → **ChatGPT haber projesi** → paste the URL and save it.
-4. Open a story and tap **Yazılı değerlendir** or **Sesli konuş**. Tap **Tüm haber bağlamını kopyala** and wait for the **Kopyalandı** confirmation.
-5. Tap **Nexora ChatGPT projemi aç**, create a new chat **inside that project**, paste the prepared context and send. Then chat or start Voice manually.
-
-The personal Project URL is validated against the `chatgpt.com/g/g-p-.../project` form and saved only in the current device's `localStorage`. It is not an OAuth connection; it does not grant access to the project. No keys or transcripts are saved by Nexora. Personal ChatGPT Projects have no public API that allows Nexora to directly create a Project chat or insert and send messages. A PWA also cannot reliably force the iPhone ChatGPT native app to open instead of Safari or activate Voice. We therefore retain a deliberate **copy → open project → paste and send** flow. If iOS opens the website, the user can open the ChatGPT app and enter their Project manually.
-
-Homepage layout changes: top-right Settings shortcut, introductory marketing text and redundant archive heading removed. Settings remain available from the hamburger menu. The day strip and calendar are more compact.
+- **ChatGPT** buttons replace the bookmark controls on all home-page article cards, including the featured story. Each story's **top-right header** also contains a ChatGPT button instead of the previous bottom discussion section.
+- One tap prepares the **full Nexora article context** (title, date, summary, Nexora's original paragraphs, source URL), starts a clipboard write, and opens the user's chosen ChatGPT Project in a new tab.
+- **Important limitation:** ChatGPT personal Projects do not expose an external API to create a new Project chat or submit a message. The user still must choose **Yeni sohbet**, then **Yapıştır → Gönder** inside the Project. iPhone may open Safari instead of the native ChatGPT app.
+- If clipboard permissions fail or a browser blocks popups, the app shows a selectable-text fallback, retry-copy button and direct project link. It never silently claims that the article was sent.
+- The Project URL is shared across devices through Vercel `NEXT_PUBLIC_CHATGPT_PROJECT_URL`; the user's Project ID is not hardcoded in the **public GitHub repository**. This is a **public client configuration value, not a secret**; do not put credentials here. The site itself remains protected with Vercel Authentication.
+- Optional per-device override: hamburger menu → **Ayarlar → ChatGPT haber projesi**. The new localStorage key is `nexora:chatgpt-project:v2` so older saved project links do not override the latest shared News project.
+- Bookmarking remains accessible in the article detail's bottom actions, and saved-story filtering remains on the homepage. No separate OpenAI API billing.
+- Preview deployments stay disabled, and the existing one-hour revalidation strategy remains in place.
