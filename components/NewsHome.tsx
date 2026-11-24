@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, Bookmark, BookOpen, Clock3, Search, Sparkles, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Bookmark, BookOpen, Clock3, Search, Settings, Sparkles, X } from 'lucide-react';
 import type { Article, Category } from '@/lib/types';
 import { CATEGORIES, CATEGORY_LABELS } from '@/lib/types';
 
@@ -81,6 +81,7 @@ export function NewsHome({ articles }: {articles: Article[]}) {
         <div className="masthead">
           <Link href="/" className="brand" aria-label="Nexora ana sayfa">NEXORA<span className="brand-dot">.</span></Link>
           <span className="masthead-caption">Dünyayı anlamanın yeni yolu</span>
+          <Link href="/settings" className="settings-button" aria-label="Ayarlar ve gece modu"><Settings size={19}/></Link>
           <button className="saved-button" onClick={() => chooseSection('saved')} aria-label="Kaydedilen haberleri göster">
             <Bookmark size={19} /> <span>{saved.size}</span>
           </button>
