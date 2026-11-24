@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, Bookmark, Check, Clock3, Copy, ExternalLink, Headphones, MessageCircle, Settings, Share2, X } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Bookmark, Check, Clock3, Copy, ExternalLink, Headphones, MessageCircle, Share2, X } from 'lucide-react';
 import type { Article } from '@/lib/types';
 import { CATEGORY_LABELS } from '@/lib/types';
 import { SiteMenu } from '@/components/SiteMenu';
+import { getChatGPTProjectUrl } from '@/lib/chatgpt-project';
 
 type Mode = 'text' | 'voice';
 
@@ -16,7 +17,8 @@ function getSaved(): Set<string> {
 
 function contextForArticle(article: Article, mode: Mode): string {
   return [
-    'Nexora adlı haber uygulamasından bu içeriği değerlendiriyorum.',
+    'NEXORA HABER ANALİZLERİ — ' + article.title,
+    'Bu metni Nexora Günlük haberini değerlendirmek üzere paylaşıyorum. Bu haber için ayrı bir sohbet aç.',
     'Konu: ' + article.title,
     'Kategori: ' + CATEGORY_LABELS[article.category] + ' / ' + article.subcategory,
     'Yayın tarihi: ' + (article.publishedAt || 'Belirtilmemiş'),
@@ -46,6 +48,8 @@ export function ArticleView({ article }: {article: Article}) {
   const [saved, setSaved] = useState(false);
   const [mode, setMode] = useState<Mode | null>(null);
   const [copied, setCopied] = useState(false);
+  const [projectUrl, setProjectUrl] = useState<string | null>(null);
+  const [copyError, setCopyError] = useState('');
   const [shareNotice, setShareNotice] = useState('');
   const textRef = useRef<HTMLTextAreaElement>(null);
 
@@ -81,7 +85,17 @@ export function ArticleView({ article }: {article: Article}) {
       else { await navigator.clipboard.writeText(window.location.href); setShareNotice('Bağlantı kopyalandı.'); }
     } catch { /* Share dialog may be cancelled */ }
   };
-  const openMode = (selected: Mode) => { setCopied(false); setMode(selected); };
+  const openMode = (selected: Mode) => {
+    setCopied(false);
+    setCopyError('');
+    setProjectUrl(getChatGPTProjectUrl());
+    setMode(selected);
+  };
+  const copyPrepared = async (text: string) => {
+    const success = await copyText(text, textRef.current);
+    setCopied(success);
+    setCopyError(success ? '' : 'Kopyalama engellendi. Yukarıdaki metni seçip elle kopyala.');
+  };
   const prepared = mode ? contextForArticle(article, mode) : '';
 
   return (
@@ -89,7 +103,7 @@ export function ArticleView({ article }: {article: Article}) {
       <header className="article-header">
         <SiteMenu/><Link href="/" className="back-link"><ArrowLeft size={19}/> <span>Gazeteye dön</span></Link>
         <Link href="/" className="brand small-brand">NEXORA<span className="brand-dot">.</span></Link>
-        <div className="article-header-actions"><Link className="icon-action" href="/settings" aria-label="Ayarlar ve gece modu"><Settings size={20}/></Link><button className="icon-action" onClick={toggleSaved} aria-label={saved ? 'Kaydı kaldır' : 'Haberi kaydet'}><Bookmark size={20} fill={saved ? 'currentColor' : 'none'}/></button></div>
+        <div className="article-header-actions"><button className="icon-action" onClick={toggleSaved} aria-label={saved ? 'Kaydı kaldır' : 'Haberi kaydet'}><Bookmark size={20} fill={saved ? 'currentColor' : 'none'}/></button></div>
       </header>
 
       <main className="story-layout">
@@ -110,12 +124,12 @@ export function ArticleView({ article }: {article: Article}) {
         </div>
         <section className="discussion-panel">
           <div className="discussion-head"><span className="discussion-spark">✦</span><div><span className="eyebrow">DAHA DERİNE İN</span><h2>Bu haberi birlikte değerlendirelim.</h2></div></div>
-          <p>Haberin metnini ChatGPT'ye aktar, sorularını yaz veya sesli konuş. Ayrı bir API aboneliği gerekmiyor.</p>
+          <p>Haber metnini kopyala, kendi ChatGPT haber projen içinde ayrı sohbet başlat. Yazılı veya sesli devam et.</p>
           <div className="discussion-actions">
             <button onClick={() => openMode('text')}><MessageCircle size={20}/><span>Yazılı değerlendir</span><ArrowUpRight size={17}/></button>
             <button onClick={() => openMode('voice')}><Headphones size={20}/><span>Sesli konuş</span><ArrowUpRight size={17}/></button>
           </div>
-          <small>ChatGPT ayrı açılır. Otomatik mesaj gönderme veya sesli modu otomatik başlatma garantisi yoktur.</small>
+          <small>Proje bağlantını Ayarlar'dan bir kez tanımlayabilirsin. Mesajı yapıştırmak ve göndermek ChatGPT'de yapılır.</small>
         </section>
         <div className="story-bottom"><button onClick={toggleSaved}><Bookmark size={18} fill={saved ? 'currentColor' : 'none'}/>{saved ? 'Kaydedildi' : 'Sonra okumak için kaydet'}</button><button onClick={share}><Share2 size={18}/>Paylaş</button></div>
         {shareNotice && <p className="toast-inline">{shareNotice}</p>}
@@ -125,12 +139,30 @@ export function ArticleView({ article }: {article: Article}) {
       {mode && <div className="dialog-scrim" role="presentation" onMouseDown={e => { if (e.target === e.currentTarget) setMode(null); }}>
         <div className="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
           <div className="dialog-title-row"><div><span className="eyebrow">{mode === 'voice' ? 'SESLİ SOHBET' : 'YAZILI SOHBET'}</span><h2 id="dialog-title">ChatGPT'de devam et</h2></div><button className="dialog-close" aria-label="Kapat" onClick={() => setMode(null)}><X size={21}/></button></div>
-          <p>Önce haber bağlamını kopyala. Sonra ChatGPT'yi açıp yeni bir sohbete yapıştır.</p>
-          <label htmlFor="prepared-context" className="context-label">Hazır haber bağlamı</label>
-          <textarea id="prepared-context" ref={textRef} className="context-preview" readOnly value={prepared} onFocus={e=>e.currentTarget.select()} />
-          <button className="copy-button" onClick={async () => setCopied(await copyText(prepared, textRef.current))}>{copied ? <Check size={19}/> : <Copy size={19}/>} {copied ? "Kopyalandı — şimdi ChatGPT'yi aç" : 'Haber metnini kopyala'}</button>
-          <a className="open-chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT'yi aç <ExternalLink size={17}/></a>
-          {mode === 'voice' ? <p className="dialog-tip"><strong>Sesli konuşma:</strong> Metni sohbete yapıştırıp gönder, ChatGPT'de sesli modu başlat. iPhone'da arka planda konuşmaya devam etmek için ChatGPT'nin Voice → Background Conversations ayarını açman gerekebilir. Ardından Nexora'ya dönebilirsin.</p> : <p className="dialog-tip">ChatGPT sayfası açıldığında kopyaladığın metni yeni sohbete yapıştır. Sonra o haberi istediğin kadar tartışabilirsin.</p>}
+          <p><strong>1.</strong> Haber bağlamını kopyala. <strong>2.</strong> ChatGPT'de kendi haber projeni aç. <strong>3.</strong> Proje içinde yeni sohbet başlatıp yapıştır ve gönder.</p>
+          <label htmlFor="prepared-context" className="context-label">Kopyalanacak haber metni ve kaynak</label>
+          <textarea id="prepared-context" ref={textRef} className="context-preview"
+            readOnly value={prepared} onFocus={e => e.currentTarget.select()}/>
+          <button className="copy-button" type="button" onClick={() => copyPrepared(prepared)}>
+            {copied ? <Check size={19}/> : <Copy size={19}/>}
+            {copied ? 'Kopyalandı — ChatGPT projesini aç' : '1. Tüm haber bağlamını kopyala'}
+          </button>
+          {copyError && <p role="alert" className="project-input-error">{copyError}</p>}
+          {projectUrl ? (
+            <a className="open-chatgpt" href={projectUrl} target="_blank" rel="noopener noreferrer">
+              2. Nexora ChatGPT projemi aç <ExternalLink size={17}/>
+            </a>
+          ) : (
+            <Link className="open-chatgpt" href="/settings">
+              2. ChatGPT proje bağlantısını ayarla <ExternalLink size={17}/>
+            </Link>
+          )}
+          <p className="dialog-tip">
+            {mode === 'voice' ?
+              'Sesli sohbet: Projede yeni sohbet aç, haberi yapıştırıp gönder ve ChatGPT uygulamasında sesli modu başlat. Arka planda konuşma ayarı açıksa Nexora’ya dönerek okumaya devam edebilirsin.' :
+              'Proje içinde her haber için yeni sohbet başlat. Böylece haber konuşmaların tek proje altında toplanır.'}
+          </p>
+          <p className="dialog-limit">Nexora, ChatGPT projesine otomatik mesaj gönderemez veya sohbet oluşturamaz. iPhone, proje bağlantısını web tarayıcısında açabilir; bu durumda ChatGPT uygulamasını kendin açıp aynı projeye girmen gerekebilir.</p>
         </div>
       </div>}
     </div>
