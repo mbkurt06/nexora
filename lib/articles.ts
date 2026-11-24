@@ -12,6 +12,7 @@ interface ArticleRow {
   subcategory: string;
   published_at: string | null;
   issue_date: string | null;
+  updated_at: string | null;
   source_name: string | null;
   source_url: string | null;
   importance: string;
@@ -36,6 +37,7 @@ function toArticle(row: ArticleRow): Article {
     subcategory: row.subcategory,
     publishedAt: row.published_at,
     issueDate: row.issue_date,
+    updatedAt: row.updated_at,
     sourceName: row.source_name,
     sourceUrl: row.source_url,
     importance: row.importance as Importance,
@@ -49,7 +51,7 @@ export async function getArticles(): Promise<Article[]> {
   const supabase = database();
   if (!supabase) return demoArticles;
   const { data, error } = await supabase.from('articles')
-    .select('id,slug,title,summary,body,category,subcategory,published_at,issue_date,source_name,source_url,importance,read_time,cover_tone')
+    .select('id,slug,title,summary,body,category,subcategory,published_at,issue_date,updated_at,source_name,source_url,importance,read_time,cover_tone')
     .eq('status', 'published')
     .order('issue_date', { ascending: false })
     .order('published_at', { ascending: false })
@@ -62,7 +64,7 @@ export async function getArticle(slug: string): Promise<Article | null> {
   const supabase = database();
   if (!supabase) return demoArticles.find(article => article.slug === slug) ?? null;
   const { data, error } = await supabase.from('articles')
-    .select('id,slug,title,summary,body,category,subcategory,published_at,issue_date,source_name,source_url,importance,read_time,cover_tone')
+    .select('id,slug,title,summary,body,category,subcategory,published_at,issue_date,updated_at,source_name,source_url,importance,read_time,cover_tone')
     .eq('status', 'published').eq('slug', slug).maybeSingle();
   if (error) { console.error('Could not load article:', error.message); return null; }
   return data ? toArticle(data as ArticleRow) : null;

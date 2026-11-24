@@ -11,6 +11,7 @@ export interface Article {
   subcategory: string;
   publishedAt: string | null;
   issueDate?: string | null;
+  updatedAt?: string | null;
   sourceName: string | null;
   sourceUrl: string | null;
   importance: Importance;
