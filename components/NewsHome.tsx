@@ -7,6 +7,7 @@ import type { Article, Category } from '@/lib/types';
 import { CATEGORIES, CATEGORY_LABELS } from '@/lib/types';
 import { SiteMenu } from '@/components/SiteMenu';
 import { ChatGPTAction } from '@/components/ChatGPTAction';
+import { RefreshButton } from '@/components/RefreshButton';
 
 type Section = Category | 'all' | 'saved';
 const issueOf = (article: Article) => article.issueDate || article.publishedAt?.slice(0,10) || null;
@@ -32,7 +33,7 @@ function datePart(value: string, what: 'day' | 'month') {
   return new Intl.DateTimeFormat('tr-TR', {month:'short', timeZone:'UTC'}).format(date);
 }
 
-export function NewsHome({ articles }: { articles: Article[] }) {
+export function NewsHome({ articles, build }: { articles: Article[]; build: string }) {
   const [section,setSection] = useState<Section>('all');
   const [issueDate,setIssueDate] = useState('all');
   const [subcategory,setSubcategory] = useState('Tümü');
@@ -105,6 +106,7 @@ export function NewsHome({ articles }: { articles: Article[] }) {
         <SiteMenu/>
         <Link href="/" className="brand" aria-label="Nexora ana sayfa">NEXORA<span className="brand-dot">.</span></Link>
         <span className="masthead-caption">Nexora Günlük</span>
+        <RefreshButton articles={articles} build={build}/>
         <button className="saved-button" onClick={()=>selectCategory('saved')} aria-label="Kaydedilen haberler">
           <Bookmark size={19}/><span>{saved.size}</span>
         </button>
