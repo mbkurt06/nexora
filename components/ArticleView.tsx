@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, Bookmark, Check, Clock3, Copy, ExternalLink, Headphones, MessageCircle, Settings, Share2, X } from 'lucide-react';
 import type { Article } from '@/lib/types';
 import { CATEGORY_LABELS } from '@/lib/types';
+import { SiteMenu } from '@/components/SiteMenu';
 
 type Mode = 'text' | 'voice';
 
@@ -19,6 +20,7 @@ function contextForArticle(article: Article, mode: Mode): string {
     'Konu: ' + article.title,
     'Kategori: ' + CATEGORY_LABELS[article.category] + ' / ' + article.subcategory,
     'Yayın tarihi: ' + (article.publishedAt || 'Belirtilmemiş'),
+    'Nexora günlük sayı tarihi: ' + (article.issueDate || 'Belirtilmemiş'),
     article.isDemo ? 'NOT: Bu güncel haber değil, uygulama için örnek bilgilendirme içeriğidir.' : '',
     'Özet: ' + article.summary,
     'Metin:\n' + article.body.join('\n\n'),
@@ -85,14 +87,14 @@ export function ArticleView({ article }: {article: Article}) {
   return (
     <div className="app-shell article-shell">
       <header className="article-header">
-        <Link href="/" className="back-link"><ArrowLeft size={19}/> <span>Gazeteye dön</span></Link>
+        <SiteMenu/><Link href="/" className="back-link"><ArrowLeft size={19}/> <span>Gazeteye dön</span></Link>
         <Link href="/" className="brand small-brand">NEXORA<span className="brand-dot">.</span></Link>
         <div className="article-header-actions"><Link className="icon-action" href="/settings" aria-label="Ayarlar ve gece modu"><Settings size={20}/></Link><button className="icon-action" onClick={toggleSaved} aria-label={saved ? 'Kaydı kaldır' : 'Haberi kaydet'}><Bookmark size={20} fill={saved ? 'currentColor' : 'none'}/></button></div>
       </header>
 
       <main className="story-layout">
         <div className="story-head">
-          <div className="story-eyebrow">{CATEGORY_LABELS[article.category]} <span>/</span> {article.subcategory}</div>
+          <div className="story-eyebrow">NEXORA GÜNLÜK / {CATEGORY_LABELS[article.category]} <span>/</span> {article.subcategory}</div>
           <h1>{article.title}</h1>
           <p className="story-deck">{article.summary}</p>
           <div className="story-metadata"><span><Clock3 size={15}/>{article.readTime} dk okuma</span><span>{article.isDemo ? 'Örnek içerik • Güncel haber değil' : article.publishedAt ? new Intl.DateTimeFormat('tr-TR',{dateStyle:'long'}).format(new Date(article.publishedAt)) : 'Tarih belirtilmedi'}</span></div>
