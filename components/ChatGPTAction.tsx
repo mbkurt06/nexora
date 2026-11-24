@@ -54,20 +54,15 @@ export function ChatGPTAction({
     }
 
     setStatus('copying');
-    // Copy while the user gesture is active, and open the real destination immediately.
-    // iOS leaves an about:blank tab behind if we first open a placeholder and redirect later.
-    const copyPromise = copyContext(context);
-    let destination: Window | null = null;
-    try {
-      destination = window.open(url, '_blank');
-      if (destination) destination.opener = null;
-    } catch { destination = null; }
-
-    const copied = await copyPromise;
+    // Keep the Nexora PWA in its original window: opening _blank on iOS
+    // creates an empty Safari sheet when ChatGPT is handed off to its app.
+    const copied = await copyContext(context);
     setStatus(copied ? 'copied' : 'idle');
     if (!copied) {
       setFallback({ problem: 'copy', context, url });
+      return;
     }
+    window.location.assign(url);
   };
 
   return <>
