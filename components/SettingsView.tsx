@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Check, LockKeyhole, Moon, Monitor, Sun } from 'lucide-react';
+import { ArrowLeft, Check, Copy, ExternalLink, Link2, LockKeyhole, MessageCircle, Moon, Monitor, Sun, X } from 'lucide-react';
 import { SiteMenu } from '@/components/SiteMenu';
 import { getThemePreference, saveThemePreference, type ThemePreference } from '@/lib/theme';
+import { CHATGPT_PROJECT_INSTRUCTIONS, clearChatGPTProjectUrl, getChatGPTProjectUrl, saveChatGPTProjectUrl } from '@/lib/chatgpt-project';
 
 const options: { value: ThemePreference; label: string; description: string; Icon: typeof Sun }[] = [
   { value: 'light', label: 'Açık', description: 'Her zaman açık renk görünüm', Icon: Sun },
@@ -14,8 +15,40 @@ const options: { value: ThemePreference; label: string; description: string; Ico
 
 export function SettingsView() {
   const [selected, setSelected] = useState<ThemePreference>('system');
+  const [projectInput, setProjectInput] = useState('');
+  const [projectUrl, setProjectUrl] = useState<string | null>(null);
+  const [projectError, setProjectError] = useState('');
+  const [instructionsCopied, setInstructionsCopied] = useState(false);
 
-  useEffect(() => { setSelected(getThemePreference()); }, []);
+  useEffect(() => {
+    setSelected(getThemePreference());
+    const saved = getChatGPTProjectUrl();
+    setProjectUrl(saved);
+    setProjectInput(saved || '');
+  }, []);
+
+  const saveProject = () => {
+    const valid = saveChatGPTProjectUrl(projectInput);
+    if (!valid) {
+      setProjectError('ChatGPT projesinin adresini gir. Adres https://chatgpt.com/g/g-p-.../project biçiminde olmalı.');
+      return;
+    }
+    setProjectError('');
+    setProjectUrl(valid);
+    setProjectInput(valid);
+  };
+
+  const removeProject = () => {
+    clearChatGPTProjectUrl();
+    setProjectInput('');
+    setProjectUrl(null);
+    setProjectError('');
+  };
+
+  const copyInstructions = async () => {
+    try { await navigator.clipboard.writeText(CHATGPT_PROJECT_INSTRUCTIONS); setInstructionsCopied(true); }
+    catch { setInstructionsCopied(false); }
+  };
 
   const change = (value: ThemePreference) => {
     saveThemePreference(value);
@@ -51,6 +84,41 @@ export function SettingsView() {
             ))}
           </div>
           <p className="settings-hint">Tercihin bu cihazda saklanır. Başka bir cihazda farklı görünüm seçebilirsin.</p>
+        </section>
+        <section className="settings-section" aria-labelledby="chatgpt-project-heading">
+          <div className="settings-section-heading">
+            <MessageCircle size={22} aria-hidden="true"/>
+            <div><h2 id="chatgpt-project-heading">ChatGPT haber projesi</h2>
+              <p>Her haberi ayrı bir sohbet olarak aynı ChatGPT projesinde değerlendir.</p>
+            </div>
+          </div>
+          <div className="project-setup-steps">
+            <p><strong>1.</strong> ChatGPT'de <strong>Nexora Haber Analizleri</strong> adında özel bir proje oluştur.</p>
+            <p><strong>2.</strong> Proje açıkken tarayıcı adresini kopyala ve aşağıdaki alana yapıştır.</p>
+          </div>
+          <label className="project-url-label" htmlFor="chatgpt-project-url">Proje bağlantısı</label>
+          <div className="project-url-field">
+            <Link2 size={19} aria-hidden="true" />
+            <input id="chatgpt-project-url" type="url" value={projectInput}
+              placeholder="https://chatgpt.com/g/g-p-.../project"
+              autoComplete="off" spellCheck={false}
+              onChange={event => { setProjectInput(event.target.value); setProjectError(''); }}
+              aria-invalid={Boolean(projectError)} aria-describedby={projectError ? 'project-error' : undefined}/>
+          </div>
+          {projectError && <p id="project-error" className="project-input-error" role="alert">{projectError}</p>}
+          <div className="project-setup-actions">
+            <button type="button" className="project-save-button" onClick={saveProject}><Check size={17}/> Projeyi kaydet</button>
+            {projectUrl && <button type="button" className="project-remove-button" onClick={removeProject}><X size={16}/> Bağlantıyı kaldır</button>}
+          </div>
+          {projectUrl && <div className="project-linked-note"><Check size={18}/> Proje bağlantısı bu cihazda kayıtlı.
+            <a href={projectUrl} target="_blank" rel="noopener noreferrer">Projeyi aç <ExternalLink size={14}/></a>
+          </div>}
+          <p className="settings-hint">Bu bağlantı yalnızca cihazında saklanır. ChatGPT'deki özel projenin sohbetlerine erişim yetkisi vermez veya otomatik sohbet oluşturmaz.</p>
+          <div className="project-instructions">
+            <h3>Proje talimatı (isteğe bağlı)</h3>
+            <p>ChatGPT'de Proje ayarları → Talimatlar bölümüne bu metni ekleyebilirsin.</p>
+            <button type="button" onClick={copyInstructions}><Copy size={15}/>{instructionsCopied ? 'Talimat kopyalandı' : 'Proje talimatını kopyala'}</button>
+          </div>
         </section>
         <section className="settings-section" aria-labelledby="privacy-heading">
           <div className="settings-section-heading">
