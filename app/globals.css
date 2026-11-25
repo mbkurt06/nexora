@@ -524,3 +524,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 
 /* Chronological issue dates; keep 30-day view available while newest days appear on the right. */
 .issue-all{position:sticky;left:0;z-index:3;box-shadow:3px 0 6px #0c142220}
+
+/* Allow the final day to align at the center of the horizontal date strip. */
+.issue-strip::after{content:'';flex:0 0 calc(50% - 31px);pointer-events:none}
+.issue-tab:not(.issue-all){scroll-snap-align:center}
