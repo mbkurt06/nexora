@@ -2,6 +2,11 @@ import { createClient } from '@supabase/supabase-js';
 import { demoArticles } from './demo-articles';
 import type { Article, Category, Importance } from './types';
 
+// Publish prewritten daily classics only when their issue date arrives in Germany.
+function todayInBerlin() {
+  return new Intl.DateTimeFormat('sv-SE', { timeZone:'Europe/Berlin', year:'numeric', month:'2-digit', day:'2-digit' }).format(new Date());
+}
+
 interface ArticleRow {
   id: string;
   slug: string;
@@ -53,6 +58,7 @@ export async function getArticles(): Promise<Article[]> {
   const { data, error } = await supabase.from('articles')
     .select('id,slug,title,summary,body,category,subcategory,published_at,issue_date,updated_at,source_name,source_url,importance,read_time,cover_tone')
     .eq('status', 'published')
+    .lte('issue_date', todayInBerlin())
     .order('issue_date', { ascending: false })
     .order('published_at', { ascending: false })
     .limit(500);
@@ -65,7 +71,7 @@ export async function getArticle(slug: string): Promise<Article | null> {
   if (!supabase) return demoArticles.find(article => article.slug === slug) ?? null;
   const { data, error } = await supabase.from('articles')
     .select('id,slug,title,summary,body,category,subcategory,published_at,issue_date,updated_at,source_name,source_url,importance,read_time,cover_tone')
-    .eq('status', 'published').eq('slug', slug).maybeSingle();
+    .eq('status', 'published').lte('issue_date', todayInBerlin()).eq('slug', slug).maybeSingle();
   if (error) { console.error('Could not load article:', error.message); return null; }
   return data ? toArticle(data as ArticleRow) : null;
 }
