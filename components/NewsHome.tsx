@@ -47,11 +47,20 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
   const [ready,setReady] = useState(false);
   const issueStripRef = useRef<HTMLDivElement>(null);
 
-  const dates = useMemo(() =>
-    Array.from(new Set(articles.map(issueOf).filter((s):s is string => Boolean(s)))).sort((a,b) => a.localeCompare(b)),
-    [articles]);
+  const today = todayOnDevice();
+  const dates = useMemo(() => {
+    const available = new Set(articles.map(issueOf).filter((s):s is string => Boolean(s)));
+    // Keep the next seven calendar days visible to the right of today.
+    const day = new Date(today + 'T12:00:00');
+    for (let offset = 0; offset <= 7; offset++) {
+      const next = new Date(day);
+      next.setDate(day.getDate() + offset);
+      available.add([next.getFullYear(), String(next.getMonth()+1).padStart(2,'0'), String(next.getDate()).padStart(2,'0')].join('-'));
+    }
+    return Array.from(available).sort((a,b) => a.localeCompare(b));
+  },[articles,today]);
   const minDate = dates[0] || '';
-  const maxDate = dates[dates.length - 1] || '';
+  const maxDate = today;
 
   useEffect(() => {
     const sectionValue = sessionStorage.getItem('nexora:section') as Section | null;
@@ -97,8 +106,6 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
   const selectCategory = (category: Section) => {
     setSection(category);
     setSubcategory('Tümü');
-    // "Tümü" means all articles, not only those from the selected day.
-    if (category === 'all') selectIssue('all');
     sessionStorage.setItem('nexora:scroll','0');
   };
 
@@ -144,7 +151,7 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
             <strong>30 gün</strong>
           </button>
           {dates.map(date=><button key={date} data-issue-date={date} className={'issue-tab '+(date === issueDate?'selected':'')}
-            aria-pressed={date === issueDate} onClick={()=>selectIssue(date)}>
+            aria-pressed={date === issueDate} disabled={date > today} aria-label={date > today ? prettyDate(date) + ' (henüz yayın yok)' : prettyDate(date)} onClick={()=>selectIssue(date)}>
             <strong>{datePart(date,'day')}</strong><span>{datePart(date,'month')}</span>
           </button>)}
         </div>
@@ -154,7 +161,7 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
         <div className="section-top topic-heading"><div><span className="eyebrow">KONULAR</span><h2>İlgi alanları</h2></div><span className="story-count">{CATEGORIES.length} bölüm</span></div>
         <div className="topic-grid">
           <button className={'topic-tile '+(section==='all'?'active':'')} onClick={()=>selectCategory('all')}>
-            <span className="topic-icon">✦</span><strong>Tümü</strong><small>{articles.length} haber</small>
+            <span className="topic-icon">✦</span><strong>Tümü</strong><small>{articles.filter(a=>issueDate==='all'||issueOf(a)===issueDate).length} haber</small>
           </button>
           {CATEGORIES.map(c=><button key={c.id} className={'topic-tile '+(section===c.id?'active':'')} onClick={()=>selectCategory(c.id)}>
             <span className="topic-icon">{c.icon}</span><strong>{c.name}</strong><small>{articles.filter(a=>(issueDate==='all'||issueOf(a)===issueDate)&&a.category===c.id).length} haber</small>
