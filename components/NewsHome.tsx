@@ -10,7 +10,10 @@ import { ChatGPTAction } from '@/components/ChatGPTAction';
 import { RefreshButton } from '@/components/RefreshButton';
 
 type Section = Category | 'all' | 'saved';
-const todayInTurkey = () => new Intl.DateTimeFormat('en-CA', { timeZone:'Europe/Istanbul', year:'numeric', month:'2-digit', day:'2-digit' }).format(new Date());
+const todayOnDevice = () => {
+  const now = new Date();
+  return [now.getFullYear(), String(now.getMonth() + 1).padStart(2,'0'), String(now.getDate()).padStart(2,'0')].join('-');
+};
 const issueOf = (article: Article) => article.issueDate || article.publishedAt?.slice(0,10) || null;
 
 function stored(key: string): Set<string> {
@@ -36,7 +39,7 @@ function datePart(value: string, what: 'day' | 'month') {
 
 export function NewsHome({ articles, build }: { articles: Article[]; build: string }) {
   const [section,setSection] = useState<Section>('all');
-  const [issueDate,setIssueDate] = useState(() => todayInTurkey());
+  const [issueDate,setIssueDate] = useState(() => todayOnDevice());
   const [subcategory,setSubcategory] = useState('Tümü');
   const [search,setSearch] = useState('');
   const [saved,setSaved] = useState<Set<string>>(new Set());
@@ -54,7 +57,7 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
     const sectionValue = sessionStorage.getItem('nexora:section') as Section | null;
     if (sectionValue && ['all','saved', ...CATEGORIES.map(c=>c.id)].includes(sectionValue)) setSection(sectionValue);
     const queryDate = new URL(window.location.href).searchParams.get('date');
-    const value = queryDate || todayInTurkey();
+    const value = queryDate || todayOnDevice();
     if (value === 'all' || /^\d{4}-\d{2}-\d{2}$/.test(value)) setIssueDate(value);
     setSaved(stored('nexora:saved'));
     setRead(stored('nexora:read'));
