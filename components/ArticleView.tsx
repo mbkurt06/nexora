@@ -70,6 +70,8 @@ export function ArticleView({ article }: {article: Article}) {
             <span>{article.isDemo ? 'Örnek içerik • Güncel haber değil'
               : article.publishedAt
               ? new Intl.DateTimeFormat('tr-TR', {dateStyle:'long'}).format(new Date(article.publishedAt))
+              : article.issueDate
+              ? new Intl.DateTimeFormat('tr-TR', {dateStyle:'long', timeZone:'UTC'}).format(new Date(article.issueDate + 'T12:00:00Z'))
               : 'Tarih belirtilmedi'}</span>
           </div>
           {article.isDemo && <div className="demo-banner">Bu yazı arayüzü denemek içindir. Güncel haber olarak sunulmuyor.</div>}
