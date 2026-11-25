@@ -97,6 +97,8 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
   const selectCategory = (category: Section) => {
     setSection(category);
     setSubcategory('Tümü');
+    // "Tümü" means all articles, not only those from the selected day.
+    if (category === 'all') selectIssue('all');
     sessionStorage.setItem('nexora:scroll','0');
   };
 
@@ -152,7 +154,7 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
         <div className="section-top topic-heading"><div><span className="eyebrow">KONULAR</span><h2>İlgi alanları</h2></div><span className="story-count">{CATEGORIES.length} bölüm</span></div>
         <div className="topic-grid">
           <button className={'topic-tile '+(section==='all'?'active':'')} onClick={()=>selectCategory('all')}>
-            <span className="topic-icon">✦</span><strong>Tümü</strong><small>{candidates.length} haber</small>
+            <span className="topic-icon">✦</span><strong>Tümü</strong><small>{articles.length} haber</small>
           </button>
           {CATEGORIES.map(c=><button key={c.id} className={'topic-tile '+(section===c.id?'active':'')} onClick={()=>selectCategory(c.id)}>
             <span className="topic-icon">{c.icon}</span><strong>{c.name}</strong><small>{articles.filter(a=>(issueDate==='all'||issueOf(a)===issueDate)&&a.category===c.id).length} haber</small>
