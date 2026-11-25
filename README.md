@@ -90,3 +90,13 @@ Never commit API service-role keys or private credentials.
 - Optional per-device override: hamburger menu → **Ayarlar → ChatGPT haber projesi**. The new localStorage key is `nexora:chatgpt-project:v2` so older saved project links do not override the latest shared News project.
 - Bookmarking remains accessible in the article detail's bottom actions, and saved-story filtering remains on the homepage. No separate OpenAI API billing.
 - Preview deployments stay disabled, and the existing one-hour revalidation strategy remains in place.
+
+
+## 24–25 Kasım 2026 güncellemeleri
+
+- **Tarih şeridi artık soldan sağa artan sırada:** eski tarihler solda, güncel günler sağda. `30 gün` düğmesi solda sabit durur; uygulama arşivi açınca en yeni günleri gösterir.
+- **11 kategori:** `Sosyal Medya` (`social_media`), `Dijital Yaşam` kategorisinden ayrıldı. Instagram, X, TikTok gibi platform haberleri bu kategoriye taşınıyor.
+- **13 yeni editoryal haber:** 24 Kasım için 7, 25 Kasım için 6. Kaynaklar ve Türkçe özetlerin tek-kayıt denetim dosyası [content/curated-2026-11-24-and-25.json](content/curated-2026-11-24-and-25.json) içinde tutulur. Eski kayıtlar korunur.
+- [Supabase kategori migrasyonu](supabase/2026-11-25_social_media_category.sql) üretim veritabanına uygulandı. `articles` RLS ve salt-okuma istemci izinleri aynı kaldı.
+- Kaynak tarihi doğrulanmış olsa bile tam saat bilinmediğinden yeni kayıtların `published_at` alanı boş bırakılır. Yayın günü `issue_date` alanından gösterilir; sahte saat eklenmez.
+- 25 Kasım arşivi gün içinde yayımlanan haberleri içerir; gün tamamlanmış gibi sunulmaz. İleriye dönük otomatik haber toplama henüz kurulmuş değildir.
