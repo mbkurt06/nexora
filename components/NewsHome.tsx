@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Bookmark, BookOpen, CalendarDays, Clock3, Search, X } from 'lucide-react';
 import type { Article, Category } from '@/lib/types';
@@ -41,12 +41,13 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
   const [saved,setSaved] = useState<Set<string>>(new Set());
   const [read,setRead] = useState<Set<string>>(new Set());
   const [ready,setReady] = useState(false);
+  const issueStripRef = useRef<HTMLDivElement>(null);
 
   const dates = useMemo(() =>
-    Array.from(new Set(articles.map(issueOf).filter((s):s is string => Boolean(s)))).sort((a,b) => b.localeCompare(a)),
+    Array.from(new Set(articles.map(issueOf).filter((s):s is string => Boolean(s)))).sort((a,b) => a.localeCompare(b)),
     [articles]);
-  const minDate = dates[dates.length - 1] || '';
-  const maxDate = dates[0] || '';
+  const minDate = dates[0] || '';
+  const maxDate = dates[dates.length - 1] || '';
 
   useEffect(() => {
     const sectionValue = sessionStorage.getItem('nexora:section') as Section | null;
@@ -67,6 +68,13 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
   useEffect(() => {
     if (ready) sessionStorage.setItem('nexora:section',section);
   },[section,ready]);
+
+  // Keep the newest day in view; "30 gün" stays pinned on the left.
+  useEffect(() => {
+    if (!ready || issueDate !== 'all') return;
+    const strip = issueStripRef.current;
+    if (strip) strip.scrollLeft = strip.scrollWidth;
+  },[ready,issueDate]);
 
   const selectIssue = (date: string) => {
     setIssueDate(date);
@@ -122,7 +130,7 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
               min={minDate} max={maxDate} onChange={event => event.target.value && selectIssue(event.target.value)}/>
           </label>
         </div>
-        <div className="issue-strip" role="group" aria-label="Haber bulunan günler">
+        <div className="issue-strip" ref={issueStripRef} role="group" aria-label="Haber bulunan günler, eski tarihten yeni tarihe">
           <button className={'issue-tab issue-all '+(issueDate === 'all'?'selected':'')} onClick={()=>selectIssue('all')} aria-pressed={issueDate === 'all'}>
             <strong>30 gün</strong>
           </button>

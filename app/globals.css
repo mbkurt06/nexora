@@ -521,3 +521,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 :root[data-theme="dark"] .refresh-button.has-update{background:#163c2b;border-color:#3d9a64;color:#8ce6a9}
 :root[data-theme="dark"] .refresh-dot{box-shadow:0 0 0 2px #163c2b}
 @media(max-width:600px){.refresh-button{width:40px;height:40px;border-radius:12px}}
+
+/* Chronological issue dates; keep 30-day view available while newest days appear on the right. */
+.issue-all{position:sticky;left:0;z-index:3;box-shadow:3px 0 6px #0c142220}
