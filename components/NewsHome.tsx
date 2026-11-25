@@ -10,6 +10,7 @@ import { ChatGPTAction } from '@/components/ChatGPTAction';
 import { RefreshButton } from '@/components/RefreshButton';
 
 type Section = Category | 'all' | 'saved';
+const todayInTurkey = () => new Intl.DateTimeFormat('en-CA', { timeZone:'Europe/Istanbul', year:'numeric', month:'2-digit', day:'2-digit' }).format(new Date());
 const issueOf = (article: Article) => article.issueDate || article.publishedAt?.slice(0,10) || null;
 
 function stored(key: string): Set<string> {
@@ -35,7 +36,7 @@ function datePart(value: string, what: 'day' | 'month') {
 
 export function NewsHome({ articles, build }: { articles: Article[]; build: string }) {
   const [section,setSection] = useState<Section>('all');
-  const [issueDate,setIssueDate] = useState('all');
+  const [issueDate,setIssueDate] = useState(() => todayInTurkey());
   const [subcategory,setSubcategory] = useState('Tümü');
   const [search,setSearch] = useState('');
   const [saved,setSaved] = useState<Set<string>>(new Set());
@@ -53,8 +54,7 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
     const sectionValue = sessionStorage.getItem('nexora:section') as Section | null;
     if (sectionValue && ['all','saved', ...CATEGORIES.map(c=>c.id)].includes(sectionValue)) setSection(sectionValue);
     const queryDate = new URL(window.location.href).searchParams.get('date');
-    const savedDate = sessionStorage.getItem('nexora:issue-date');
-    const value = queryDate || savedDate || 'all';
+    const value = queryDate || todayInTurkey();
     if (value === 'all' || /^\d{4}-\d{2}-\d{2}$/.test(value)) setIssueDate(value);
     setSaved(stored('nexora:saved'));
     setRead(stored('nexora:read'));
@@ -69,12 +69,16 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
     if (ready) sessionStorage.setItem('nexora:section',section);
   },[section,ready]);
 
-  // Keep the newest day in view; "30 gün" stays pinned on the left.
+  // Center the selected day; the archive shortcut stays pinned at the left.
   useEffect(() => {
-    if (!ready || issueDate !== 'all') return;
+    if (!ready) return;
     const strip = issueStripRef.current;
-    if (strip) strip.scrollLeft = strip.scrollWidth;
-  },[ready,issueDate]);
+    if (!strip) return;
+    if (issueDate === 'all') { strip.scrollLeft = strip.scrollWidth; return; }
+    const selected = Array.from(strip.querySelectorAll<HTMLButtonElement>('.issue-tab'))
+      .find(tab => tab.dataset.issueDate === issueDate);
+    if (selected) strip.scrollLeft = selected.offsetLeft - strip.offsetLeft + selected.offsetWidth / 2 - strip.clientWidth / 2;
+  },[ready,issueDate,dates]);
 
   const selectIssue = (date: string) => {
     setIssueDate(date);
@@ -134,7 +138,7 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
           <button className={'issue-tab issue-all '+(issueDate === 'all'?'selected':'')} onClick={()=>selectIssue('all')} aria-pressed={issueDate === 'all'}>
             <strong>30 gün</strong>
           </button>
-          {dates.map(date=><button key={date} className={'issue-tab '+(date === issueDate?'selected':'')}
+          {dates.map(date=><button key={date} data-issue-date={date} className={'issue-tab '+(date === issueDate?'selected':'')}
             aria-pressed={date === issueDate} onClick={()=>selectIssue(date)}>
             <strong>{datePart(date,'day')}</strong><span>{datePart(date,'month')}</span>
           </button>)}
