@@ -528,3 +528,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 /* Allow the final day to align at the center of the horizontal date strip. */
 .issue-strip::after{content:'';flex:0 0 calc(50% - 31px);pointer-events:none}
 .issue-tab:not(.issue-all){scroll-snap-align:center}
+
+/* Upcoming days remain in the date strip but cannot be opened before publication. */
+.issue-tab:disabled{opacity:.42;cursor:default}
+.issue-tab:disabled:hover{transform:none}
