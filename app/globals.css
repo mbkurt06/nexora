@@ -564,3 +564,17 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
   .featured-card .featured-link h3{font-size:22px}
   .featured-card .featured-link p{font-size:15px}
 }
+
+
+/* Contextual science/news vocabulary in article text. */
+.glossary-term{font:inherit;color:var(--accent);display:inline;vertical-align:baseline;border:0;border-bottom:1px dotted currentColor;background:transparent;padding:0 1px;cursor:help;text-decoration:none}
+.glossary-term svg{display:inline-block;vertical-align:baseline;margin-left:3px;width:13px;height:13px}
+.glossary-term:hover{background:color-mix(in srgb,var(--accent) 12%,transparent);border-radius:3px}
+.glossary-backdrop{position:fixed;inset:0;z-index:50;background:#07111bc9;display:flex;align-items:center;justify-content:center;padding:18px}
+.glossary-dialog{position:relative;background:var(--white);color:var(--ink);border:1px solid var(--line);border-radius:20px;padding:27px;width:min(100%,480px);box-shadow:0 24px 80px #0006}
+.glossary-close{position:absolute;right:14px;top:14px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:var(--paper);color:var(--ink);width:38px;height:38px}
+.glossary-eyebrow{display:flex;align-items:center;gap:7px;font-size:12px;letter-spacing:.11em;color:var(--accent);font-weight:800;padding-right:42px}
+.glossary-dialog h2{font:700 24px/1.36 'Libre Baskerville',Georgia,serif;margin:18px 0 15px}
+.glossary-dialog p{font-size:17px;line-height:1.75;color:var(--muted);margin:0 0 25px}
+.glossary-done{background:var(--accent);border:0;border-radius:12px;color:#fff;padding:12px 18px;font-size:15px;font-weight:700;width:100%}
+:root[data-theme="dark"] .glossary-done{color:#0c1422}
