@@ -190,11 +190,18 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
             <ChatGPTAction article={featured} placement="featured" onStart={rememberScroll}/>
           </div>
           <div className="article-grid">{rest.map(article=><article key={article.id} className={'news-card '+(read.has(article.id)?'has-read':'')}>
-            <div className={'card-art tone-'+article.coverTone} aria-hidden="true"><span>{CATEGORIES.find(c=>c.id===article.category)?.icon}</span></div>
             <div className="card-content">
-              <div className="card-top"><span>{CATEGORY_LABELS[article.category]} / {article.subcategory}</span><ChatGPTAction article={article} placement="card" onStart={rememberScroll}/></div>
+              <div className="card-top">
+                <div className="card-heading">
+                  <span className={'card-art tone-'+article.coverTone} aria-hidden="true">{CATEGORIES.find(c=>c.id===article.category)?.icon}</span>
+                  <span>{CATEGORY_LABELS[article.category]} / {article.subcategory}</span>
+                </div>
+                <ChatGPTAction article={article} placement="card" onStart={rememberScroll}/>
+              </div>
               <Link className="card-title" href={'/story/'+article.slug} onClick={rememberScroll}><h3>{article.title}</h3></Link>
-              <p>{article.summary}</p>
+              <p className="card-summary">{article.summary}</p>
+              {article.body?.[0] && !article.body[0].toLocaleLowerCase('tr-TR').includes(article.summary.slice(0,45).toLocaleLowerCase('tr-TR')) &&
+                <p className="card-preview">{article.body[0]}</p>}
               <div className="card-footer"><span><Clock3 size={14}/>{article.readTime} dk</span><span>{read.has(article.id)?'✓ Okundu':articleDate(article)}</span><Link href={'/story/'+article.slug} onClick={rememberScroll} aria-label={'Haberi oku: '+article.title}><ArrowRight size={19}/></Link></div>
             </div>
           </article>)}</div>
