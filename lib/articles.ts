@@ -55,7 +55,7 @@ export async function getArticles(): Promise<Article[]> {
     .eq('status', 'published')
     .order('issue_date', { ascending: false })
     .order('published_at', { ascending: false })
-    .limit(100);
+    .limit(500);
   if (error) { console.error('Could not load published news:', error.message); return []; }
   return (data as ArticleRow[]).map(toArticle);
 }
