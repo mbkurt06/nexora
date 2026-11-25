@@ -12,12 +12,14 @@ export async function GET() {
   }
 
   const supabase = createClient(url, key, { auth: { persistSession: false } });
+  const today = new Intl.DateTimeFormat('sv-SE', { timeZone:'Europe/Berlin', year:'numeric', month:'2-digit', day:'2-digit' }).format(new Date());
   const { data, error } = await supabase.from('articles')
     .select('id,updated_at')
     .eq('status', 'published')
+    .lte('issue_date', today)
     .order('issue_date', { ascending: false })
     .order('published_at', { ascending: false })
-    .limit(100);
+    .limit(500);
 
   if (error) {
     return NextResponse.json({ error: 'Güncelleme kontrolü yapılamadı' }, { status: 503 });
