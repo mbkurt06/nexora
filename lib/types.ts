@@ -1,4 +1,4 @@
-export type Category = 'technology' | 'science' | 'economy' | 'world' | 'books' | 'health' | 'social' | 'social_media' | 'culture' | 'education' | 'environment';
+export type Category = 'technology' | 'science' | 'economy' | 'world' | 'books' | 'classics' | 'health' | 'social' | 'social_media' | 'culture' | 'education' | 'environment';
 export type Importance = 'critical' | 'high' | 'normal';
 
 export interface Article {
@@ -26,6 +26,7 @@ export const CATEGORIES: {id: Category; name: string; icon: string; description:
   { id: 'economy', name: 'Ekonomi', icon: '📈', description: 'Faiz, enflasyon, şirketler ve piyasalar' },
   { id: 'world', name: 'Dünya', icon: '🌍', description: 'Ülkeler, kurumlar ve önemli kararlar' },
   { id: 'books', name: 'Kitap & Edebiyat', icon: '📚', description: 'Yeni kitaplar, ödüller ve edebiyat gündemi' },
+  { id: 'classics', name: 'Dünya Klasikleri', icon: '📖', description: 'Her gün bir klasik roman ve özgün kitap özeti' },
   { id: 'health', name: 'Sağlık', icon: '🧬', description: 'Tıp araştırmaları, klinik çalışmalar' },
   { id: 'social', name: 'Dijital Yaşam', icon: '💬', description: 'Dijital yaşam ve günlük teknolojiler' },
   { id: 'social_media', name: 'Sosyal Medya', icon: '📱', description: 'Instagram, TikTok, YouTube, X ve sosyal ağlar' },
