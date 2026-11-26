@@ -1,4 +1,4 @@
-export type Category = 'technology' | 'science' | 'economy' | 'world' | 'books' | 'classics' | 'health' | 'social' | 'social_media' | 'culture' | 'education' | 'environment';
+export type Category = 'technology' | 'science' | 'economy' | 'world' | 'books' | 'classics' | 'health' | 'social' | 'social_media' | 'culture' | 'education' | 'environment' | 'sports' | 'galatasaray';
 export type Importance = 'critical' | 'high' | 'normal';
 
 export interface Article {
@@ -33,6 +33,8 @@ export const CATEGORIES: {id: Category; name: string; icon: string; description:
   { id: 'culture', name: 'Kültür & Sanat', icon: '🎨', description: 'Kültürel miras, sanat ve müzeler' },
   { id: 'education', name: 'Eğitim', icon: '🎓', description: 'Eğitim politikaları, araştırmalar ve öğrenme' },
   { id: 'environment', name: 'Çevre & İklim', icon: '🌱', description: 'İklim anlaşmaları ve doğa gündemi' },
+  { id: 'sports', name: 'Spor', icon: '⚽', description: 'Futbol ve diğer spor dallarında gündem, sonuçlar ve fikstür' },
+  { id: 'galatasaray', name: 'GS', icon: '🦁', description: 'Galatasaray: sakatlıklar, oyuncu durumu, transfer ve maç takvimi' },
 ];
 
 export const CATEGORY_LABELS: Record<Category,string> = Object.fromEntries(CATEGORIES.map(c => [c.id,c.name])) as Record<Category,string>;
