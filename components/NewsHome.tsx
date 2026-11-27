@@ -63,16 +63,25 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
   const maxDate = today;
 
   useEffect(() => {
+    const params = new URL(window.location.href).searchParams;
+    const querySection = params.get('category') as Section | null;
+    const validSections: Section[] = ['all','saved', ...CATEGORIES.map(c => c.id)];
     const sectionValue = sessionStorage.getItem('nexora:section') as Section | null;
-    if (sectionValue && ['all','saved', ...CATEGORIES.map(c=>c.id)].includes(sectionValue)) setSection(sectionValue);
-    const queryDate = new URL(window.location.href).searchParams.get('date');
+    if (querySection && validSections.includes(querySection)) setSection(querySection);
+    else if (sectionValue && validSections.includes(sectionValue)) setSection(sectionValue);
+    const queryDate = params.get('date');
     const value = queryDate || todayOnDevice();
     if (value === 'all' || /^\d{4}-\d{2}-\d{2}$/.test(value)) setIssueDate(value);
+    const querySubcategory = params.get('subcategory');
+    if (querySubcategory) setSubcategory(querySubcategory);
     setSaved(stored('nexora:saved'));
     setRead(stored('nexora:read'));
     setReady(true);
-    const previousScroll = Number(sessionStorage.getItem('nexora:scroll') || '0');
-    if (previousScroll > 0) requestAnimationFrame(() => {
+    const previousScroll = querySection ? 0 : Number(sessionStorage.getItem('nexora:scroll') || '0');
+    if (querySection && querySection !== 'all') requestAnimationFrame(() => {
+      setTimeout(() => document.getElementById('haberler')?.scrollIntoView({block:'start'}), 70);
+    });
+    else if (previousScroll > 0) requestAnimationFrame(() => {
       setTimeout(() => window.scrollTo({top:previousScroll,behavior:'instant'}),70);
     });
   }, []);
@@ -98,8 +107,8 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
     sessionStorage.setItem('nexora:issue-date',date);
     sessionStorage.setItem('nexora:scroll','0');
     const target = new URL(window.location.href);
-    if (date === 'all') target.searchParams.delete('date');
-    else target.searchParams.set('date',date);
+    target.searchParams.set('date',date);
+    target.searchParams.delete('subcategory');
     window.history.replaceState({},'',target.pathname + target.search);
   };
 
@@ -107,6 +116,18 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
     setSection(category);
     setSubcategory('Tümü');
     sessionStorage.setItem('nexora:scroll','0');
+    const target = new URL(window.location.href);
+    target.searchParams.set('category',category);
+    target.searchParams.delete('subcategory');
+    window.history.replaceState({},'',target.pathname + target.search);
+  };
+
+  const selectSubcategory = (value: string) => {
+    setSubcategory(value);
+    const target = new URL(window.location.href);
+    if (value === 'Tümü') target.searchParams.delete('subcategory');
+    else target.searchParams.set('subcategory',value);
+    window.history.replaceState({},'',target.pathname + target.search);
   };
 
 
@@ -169,12 +190,12 @@ export function NewsHome({ articles, build }: { articles: Article[]; build: stri
         </div>
       </section>
 
-      <section className="feed-section" aria-live="polite">
+      <section id="haberler" className="feed-section" aria-live="polite">
         <div className="section-top"><div><span className="eyebrow">OKUMA LİSTESİ</span><h2>{categoryName}</h2></div><span className="story-count">{filtered.length} haber</span></div>
         <div className="filter-area">
           <label className="search-box"><Search size={18}/><input value={search} onChange={e=>setSearch(e.target.value)} aria-label="Haberlerde ara" placeholder="Başlık veya konu ara..."/>{search && <button onClick={()=>setSearch('')} aria-label="Aramayı temizle"><X size={16}/></button>}</label>
           <div className="chips">
-            {subcategories.map(s=><button key={s} className={'chip '+(subcategory===s?'active':'')} onClick={()=>setSubcategory(s)}>{s}</button>)}
+            {subcategories.map(s=><button key={s} className={'chip '+(subcategory===s?'active':'')} onClick={()=>selectSubcategory(s)}>{s}</button>)}
           </div>
         </div>
         {featured ? <>

@@ -163,6 +163,10 @@ export function ArticleView({ article }: {article: Article}) {
     } catch { /* Share dialog may be cancelled */ }
   };
 
+  const issueQuery = article.issueDate ? `&date=${encodeURIComponent(article.issueDate)}` : '';
+  const categoryHref = `/?category=${article.category}${issueQuery}#haberler`;
+  const subcategoryHref = `/?category=${article.category}&subcategory=${encodeURIComponent(article.subcategory)}${issueQuery}#haberler`;
+
   return (
     <div className="app-shell article-shell">
       <header className="article-header">
@@ -176,7 +180,13 @@ export function ArticleView({ article }: {article: Article}) {
 
       <main className="story-layout">
         <div className="story-head">
-          <div className="story-eyebrow">NEXORA GÜNLÜK / {CATEGORY_LABELS[article.category]} <span>/</span> {article.subcategory}</div>
+          <nav className="story-eyebrow" aria-label="Haber konumu">
+            <Link href="/?category=all">NEXORA GÜNLÜK</Link>
+            <span aria-hidden="true">/</span>
+            <Link href={categoryHref}>{CATEGORY_LABELS[article.category]}</Link>
+            <span aria-hidden="true">/</span>
+            <Link href={subcategoryHref}>{article.subcategory}</Link>
+          </nav>
           <h1>{article.title}</h1>
           <p className="story-deck"><GlossaryText text={article.summary} onExplain={setActiveTerm}/></p>
           <div className="story-metadata">
